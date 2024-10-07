@@ -1,14 +1,19 @@
 'use client';
+import { useFormState } from 'react-dom';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import LoginIcon from '@mui/icons-material/Login';
 import NextLink from 'next/link';
+import { login } from '@/app/data/actions/login';
 
 const LoginForm = () => {
+  const [errorMessage, formAction, isPending] = useFormState(login, undefined);
+
   return (
-    <form action={() => {}}>
+    <form action={formAction}>
       <Box
         width="100%"
         display="flex"
@@ -20,16 +25,37 @@ const LoginForm = () => {
           borderTopRightRadius: 6,
         }}
       >
-        <Typography variant="h5" component="h1" sx={{ fontWeight: '700' }} paddingBottom={2}>
-          Login
-        </Typography>
-        <Typography variant="body2" component="p">
+        <Typography variant="body2" component="h1">
           You must be logged in to access the app. If you do not have an account you can&nbsp;
           <Link href="/register" component={NextLink} underline="always" color="textPrimary">
             register here.
           </Link>
         </Typography>
       </Box>
+      {errorMessage && (
+        <Box
+          width="100%"
+          display="flex"
+          sx={{
+            paddingX: 2,
+            paddingTop: 2,
+            borderLeft: '1px solid',
+            borderRight: '1px solid',
+            borderColor: 'primary.main',
+          }}
+        >
+          <Box
+            sx={{
+              width: '100%',
+              backgroundColor: 'error.main',
+              padding: 2,
+              borderRadius: 1,
+            }}
+          >
+            {errorMessage}
+          </Box>
+        </Box>
+      )}
       <Box
         width="100%"
         display="flex"
@@ -38,6 +64,7 @@ const LoginForm = () => {
           padding: 2,
           border: '1px solid',
           borderColor: 'primary.main',
+          borderTop: 'none',
           borderBottomLeftRadius: 6,
           borderBottomRightRadius: 6,
         }}
@@ -48,6 +75,8 @@ const LoginForm = () => {
             label="Username"
             variant="filled"
             color="primary"
+            name="username"
+            required
             fullWidth
           />
         </Box>
@@ -57,12 +86,23 @@ const LoginForm = () => {
             label="Password"
             variant="filled"
             type="password"
+            name="password"
+            required
             fullWidth
           />
         </Box>
         <Box component="div" display="flex" justifyContent="center">
-          <Button variant="contained" sx={{ maxWidth: '200px', width: '100%' }}>
-            Login
+          <Button
+            variant="contained"
+            sx={{ maxWidth: '200px', width: '100%' }}
+            type="submit"
+            disabled={isPending}
+            aria-disabled={isPending}
+          >
+            <LoginIcon />
+            <Typography variant="button" component="span" display="flex">
+              &nbsp;Login
+            </Typography>
           </Button>
         </Box>
       </Box>

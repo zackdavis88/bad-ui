@@ -1,10 +1,8 @@
 import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
 import { UnauthenticatedNavbar } from '@/app/components/Navbar';
 import { Footer } from '@/app/components/Footer';
-import { LoginForm } from '@/app/components/LoginForm';
 
-export default function LoginPage() {
+export default function UnauthenticatedLayout({ children }: { children: React.ReactNode }) {
   return (
     <Box height="100%" display="flex" flexDirection="column">
       <UnauthenticatedNavbar />
@@ -17,9 +15,7 @@ export default function LoginPage() {
         paddingX={1}
         width="100%"
       >
-        <Container maxWidth="sm">
-          <LoginForm />
-        </Container>
+        {children}
       </Box>
       <Footer />
     </Box>

@@ -11,10 +11,13 @@ const roboto = Roboto({
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#3f51b5',
+      main: '#3E50B1',
     },
     text: {
-      primary: '#fff',
+      primary: '#FFFFFF',
+    },
+    error: {
+      main: '#A12121',
     },
     background: {
       default: '#121212',
@@ -34,19 +37,19 @@ const theme = createTheme({
               style: {
                 '&.MuiTextField-root': {
                   '& > .MuiInputLabel-root': {
-                    color: '#fff',
+                    color: '#FFFFFF',
                   },
                   '& > .MuiInputLabel-root.Mui-focused': {
-                    color: '#fff',
+                    color: '#FFFFFF',
                   },
                   '& > .MuiInputBase-root:hover:not(.Mui-disabled, .Mui-error)::before': {
-                    borderBottom: '1px solid #fff',
+                    borderBottom: '1px solid #FFFFFF',
                   },
                   '& > .MuiInputBase-root:not(.Mui-disabled, .Mui-error)::before': {
-                    borderBottom: '1px solid #fff',
+                    borderBottom: '1px solid #FFFFFF',
                   },
                   '& > .MuiInputBase-root.Mui-focused': {
-                    backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                    backgroundColor: '#212121',
                   },
                 },
               },
