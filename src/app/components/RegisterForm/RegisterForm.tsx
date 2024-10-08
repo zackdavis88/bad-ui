@@ -163,7 +163,7 @@ const RegisterForm = () => {
             aria-disabled={isPending}
           >
             <AddIcon />
-            <Typography variant="button" component="span" display="flex">
+            <Typography variant="button" component="span">
               &nbsp;Register
             </Typography>
           </Button>
