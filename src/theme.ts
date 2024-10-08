@@ -16,8 +16,12 @@ const theme = createTheme({
     text: {
       primary: '#FFFFFF',
     },
+    success: {
+      main: '#18670E',
+    },
     error: {
       main: '#A12121',
+      light: '#E99696',
     },
     background: {
       default: '#121212',
@@ -36,10 +40,10 @@ const theme = createTheme({
               props: { variant: 'filled' },
               style: {
                 '&.MuiTextField-root': {
-                  '& > .MuiInputLabel-root': {
+                  '& > .MuiInputLabel-root:not(.Mui-disabled, .Mui-error)': {
                     color: '#FFFFFF',
                   },
-                  '& > .MuiInputLabel-root.Mui-focused': {
+                  '& > .MuiInputLabel-root.Mui-focused:not(.Mui-disabled, .Mui-error)': {
                     color: '#FFFFFF',
                   },
                   '& > .MuiInputBase-root:hover:not(.Mui-disabled, .Mui-error)::before': {
@@ -48,8 +52,42 @@ const theme = createTheme({
                   '& > .MuiInputBase-root:not(.Mui-disabled, .Mui-error)::before': {
                     borderBottom: '1px solid #FFFFFF',
                   },
+                  '& > .MuiInputBase-root.Mui-error::before': {
+                    borderBottom: '1px solid #E99696',
+                  },
+                  '& > .MuiInputBase-root.Mui-error.Mui-focused::before': {
+                    borderBottom: '1px solid #E99696',
+                  },
+                  '& > .MuiInputBase-root.Mui-error::after': {
+                    borderBottom: '1px solid #E99696',
+                  },
+                  '& .MuiInputLabel-asterisk.Mui-error': {
+                    color: '#E99696',
+                  },
+                  '& > .Mui-error': {
+                    color: '#E99696',
+                  },
                   '& > .MuiInputBase-root.Mui-focused': {
                     backgroundColor: '#212121',
+                  },
+                },
+              },
+            },
+          ],
+        },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          variants: [
+            {
+              props: { variant: 'contained' },
+              style: {
+                '&.MuiButton-root': {
+                  '&.MuiButton-colorPrimary.Mui-disabled': {
+                    backgroundColor: '#2B387B',
+                    color: '#D7D7D7',
                   },
                 },
               },

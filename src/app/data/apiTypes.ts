@@ -25,6 +25,11 @@ interface PaginationData {
   totalPages: number;
 }
 
+export interface CreateUserResponse {
+  message: string;
+  user: UserData;
+}
+
 export interface GetProjectsResponse extends PaginationData {
   message: string;
   projects: ProjectData[];

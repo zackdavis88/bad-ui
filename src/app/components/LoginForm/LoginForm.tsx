@@ -1,5 +1,5 @@
 'use client';
-import { useFormState } from 'react-dom';
+import { useActionState } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
@@ -10,7 +10,7 @@ import NextLink from 'next/link';
 import { login } from '@/app/data/actions/login';
 
 const LoginForm = () => {
-  const [errorMessage, formAction, isPending] = useFormState(login, undefined);
+  const [errorMessage, formAction, isPending] = useActionState(login, undefined);
 
   return (
     <form action={formAction}>
