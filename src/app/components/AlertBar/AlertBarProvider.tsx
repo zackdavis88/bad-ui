@@ -62,6 +62,7 @@ function AlertBarProvider({ children }: { children: React.ReactNode }) {
     } else if (!isOpen && message) {
       setIsOpen(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
   const providerValues = {
