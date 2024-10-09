@@ -1,5 +1,6 @@
 'use client';
-import { useEffect, useState, useActionState } from 'react';
+import { useEffect, useState, useActionState, useContext } from 'react';
+import { useRouter } from 'next/navigation';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
@@ -8,12 +9,15 @@ import AddIcon from '@mui/icons-material/Add';
 import Link from '@mui/material/Link';
 import NextLink from 'next/link';
 import { createUser } from '@/app/data/actions/createUser';
+import { AlertBarContext } from '@/app/components/AlertBar';
 
 const RegisterForm = () => {
+  const router = useRouter();
   const [createUserState, formAction, isPending] = useActionState(createUser, undefined);
   const [usernameInput, setUsernameInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
   const [confirmPasswordInput, setConfirmPasswordInput] = useState('');
+  const { setMessage, setType } = useContext(AlertBarContext);
 
   const generalErrorMessage =
     createUserState?.status === 'error' && !createUserState.errorField && createUserState.message;
@@ -35,9 +39,17 @@ const RegisterForm = () => {
 
   useEffect(() => {
     if (createUserState?.status === 'success') {
+      // Clear the form out.
       setUsernameInput('');
       setPasswordInput('');
       setConfirmPasswordInput('');
+
+      // Queue an alert.
+      setType(createUserState.status);
+      setMessage(createUserState.message);
+
+      // Navigate back to the login page.
+      router.push('/');
     }
   }, [createUserState?.status]);
 

@@ -23,6 +23,12 @@ const theme = createTheme({
       main: '#A12121',
       light: '#E99696',
     },
+    info: {
+      main: '#025C8D',
+    },
+    warning: {
+      main: '#8D4002',
+    },
     background: {
       default: '#121212',
       paper: '#121212',
