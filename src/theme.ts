@@ -11,10 +11,23 @@ const roboto = Roboto({
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#3f51b5',
+      main: '#3E50B1',
     },
     text: {
-      primary: '#fff',
+      primary: '#FFFFFF',
+    },
+    success: {
+      main: '#18670E',
+    },
+    error: {
+      main: '#A12121',
+      light: '#E99696',
+    },
+    info: {
+      main: '#025C8D',
+    },
+    warning: {
+      main: '#8D4002',
     },
     background: {
       default: '#121212',
@@ -33,20 +46,54 @@ const theme = createTheme({
               props: { variant: 'filled' },
               style: {
                 '&.MuiTextField-root': {
-                  '& > .MuiInputLabel-root': {
-                    color: '#fff',
+                  '& > .MuiInputLabel-root:not(.Mui-disabled, .Mui-error)': {
+                    color: '#FFFFFF',
                   },
-                  '& > .MuiInputLabel-root.Mui-focused': {
-                    color: '#fff',
+                  '& > .MuiInputLabel-root.Mui-focused:not(.Mui-disabled, .Mui-error)': {
+                    color: '#FFFFFF',
                   },
                   '& > .MuiInputBase-root:hover:not(.Mui-disabled, .Mui-error)::before': {
-                    borderBottom: '1px solid #fff',
+                    borderBottom: '1px solid #FFFFFF',
                   },
                   '& > .MuiInputBase-root:not(.Mui-disabled, .Mui-error)::before': {
-                    borderBottom: '1px solid #fff',
+                    borderBottom: '1px solid #FFFFFF',
+                  },
+                  '& > .MuiInputBase-root.Mui-error::before': {
+                    borderBottom: '1px solid #E99696',
+                  },
+                  '& > .MuiInputBase-root.Mui-error.Mui-focused::before': {
+                    borderBottom: '1px solid #E99696',
+                  },
+                  '& > .MuiInputBase-root.Mui-error::after': {
+                    borderBottom: '1px solid #E99696',
+                  },
+                  '& .MuiInputLabel-asterisk.Mui-error': {
+                    color: '#E99696',
+                  },
+                  '& > .Mui-error': {
+                    color: '#E99696',
                   },
                   '& > .MuiInputBase-root.Mui-focused': {
-                    backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                    backgroundColor: '#212121',
+                  },
+                },
+              },
+            },
+          ],
+        },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          variants: [
+            {
+              props: { variant: 'contained' },
+              style: {
+                '&.MuiButton-root': {
+                  '&.MuiButton-colorPrimary.Mui-disabled': {
+                    backgroundColor: '#2B387B',
+                    color: '#D7D7D7',
                   },
                 },
               },
