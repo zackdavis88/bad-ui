@@ -1,0 +1,46 @@
+name: PR Checks
+run-name: PR Checks
+on: [pull_request]
+jobs:
+  pr-checks:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the code for the branch
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      # Install NodeJS
+      - name: Install NodeJS
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # Install pnpm
+      - name: 'Install pnpm'
+        run: 'npm install -g pnpm'
+
+      # Install node_modules
+      - name: Install node_modules
+        run: pnpm install
+
+      # Inject configs that are not tracked in git
+      - name: Create config file
+        run: |
+          touch .env && echo "
+          AUTH_SECRET=SUPER_SECRET_LOL
+          AUTH_URL=http://localhost:8080/api/auth
+          API_URL=http://localhost:3000
+          " > .env
+
+      # Ensure linter passes
+      - name: Run eslint
+        run: pnpm lint
+
+      # Ensure the app can be built
+      - name: Build app
+        run: pnpm build
+
+      # Start the server and wait for it to start listening
+      - name: Start server and wait for it to be listening
+        run: pnpm start & timeout 30 sh -c 'until nc -z $0 $1; do sleep 1; done' localhost 8080
