@@ -55,7 +55,7 @@ const RegisterForm = () => {
       // Navigate back to the login page, since this is a route change the AlertBar will now show the message we queued above.
       router.push('/');
     }
-  }, [createUserState?.status]);
+  }, [createUserState?.status, createUserState?.message, handleOpen, router]);
 
   return (
     <form action={formAction}>
