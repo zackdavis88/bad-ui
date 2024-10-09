@@ -1,23 +1,31 @@
 'use client';
 import { usePathname } from 'next/navigation';
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect, useCallback } from 'react';
 
 export type AlertType = 'info' | 'success' | 'warning' | 'error' | undefined;
 
-interface AlerBarState {
+interface AlertBarState {
   isOpen: boolean;
   message: string | undefined;
   type: AlertType;
-  setMessage: (value: string | undefined) => void;
-  setType: (value: AlertType) => void;
+  handleOpen: ({
+    message,
+    type,
+    openImmediately,
+  }: {
+    message: string;
+    type: AlertType;
+    openImmediately?: boolean;
+  }) => void;
+  handleClose: () => void;
 }
 
-const initialState: AlerBarState = {
+const initialState: AlertBarState = {
   isOpen: false,
   message: undefined,
   type: undefined,
-  setMessage: () => {},
-  setType: () => {},
+  handleOpen: () => {},
+  handleClose: () => {},
 };
 
 export const AlertBarContext = createContext(initialState);
@@ -28,13 +36,39 @@ function AlertBarProvider({ children }: { children: React.ReactNode }) {
   const [message, setMessage] = useState(initialState.message);
   const [type, setType] = useState(initialState.type);
 
+  const handleOpen: AlertBarState['handleOpen'] = useCallback(
+    ({ message, type, openImmediately }) => {
+      setMessage(message);
+      setType(type);
+      if (openImmediately) {
+        setIsOpen(true);
+      }
+    },
+    []
+  );
+
+  const handleClose: AlertBarState['handleClose'] = useCallback(() => {
+    setIsOpen(false);
+    setMessage(undefined);
+    setType(undefined);
+  }, []);
+
+  // Close or show the navbar on route change.
   useEffect(() => {
+    const openOrCloseAlertBar = (callback: () => void) => {
+      setTimeout(callback, 200);
+    };
+
     if (isOpen && message) {
-      setIsOpen(false);
-      setMessage(undefined);
-      setType(undefined);
+      openOrCloseAlertBar(() => {
+        setIsOpen(false);
+        setMessage(undefined);
+        setType(undefined);
+      });
     } else if (!isOpen && message) {
-      setIsOpen(true);
+      openOrCloseAlertBar(() => {
+        setIsOpen(true);
+      });
     }
   }, [pathname]);
 
@@ -42,15 +76,8 @@ function AlertBarProvider({ children }: { children: React.ReactNode }) {
     isOpen,
     message,
     type,
-    setMessage: (value: string | undefined) => {
-      setMessage(value);
-    },
-    setType: (value: AlertType) => {
-      setType(value);
-    },
-    setIsOpen: (value: boolean) => {
-      setIsOpen(value);
-    },
+    handleOpen,
+    handleClose,
   };
   return <AlertBarContext.Provider value={providerValues}>{children}</AlertBarContext.Provider>;
 }

@@ -53,12 +53,7 @@ const getIcon = (type: AlertType) => {
 };
 
 const AlertBar = () => {
-  const { isOpen, message, type, setMessage } = useContext(AlertBarContext);
-  const closeAlertBar = useCallback(() => {
-    if (message) {
-      setMessage(undefined);
-    }
-  }, []);
+  const { isOpen, message, type, handleClose } = useContext(AlertBarContext);
   const backgroundColor = getBackgroundColor(type);
 
   if (!isOpen) {
@@ -80,7 +75,7 @@ const AlertBar = () => {
       >
         <Box display="flex" justifyContent="space-between">
           {getIcon(type)}
-          <IconButton aria-label="delete" color="inherit" size="small" onClick={closeAlertBar}>
+          <IconButton aria-label="delete" color="inherit" size="small" onClick={handleClose}>
             <CloseIcon />
           </IconButton>
         </Box>

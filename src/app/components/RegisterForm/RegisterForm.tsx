@@ -17,7 +17,7 @@ const RegisterForm = () => {
   const [usernameInput, setUsernameInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
   const [confirmPasswordInput, setConfirmPasswordInput] = useState('');
-  const { setMessage, setType } = useContext(AlertBarContext);
+  const { handleOpen } = useContext(AlertBarContext);
 
   const generalErrorMessage =
     createUserState?.status === 'error' && !createUserState.errorField && createUserState.message;
@@ -45,10 +45,14 @@ const RegisterForm = () => {
       setConfirmPasswordInput('');
 
       // Queue an alert.
-      setType(createUserState.status);
-      setMessage(createUserState.message);
+      handleOpen({
+        message: createUserState.message,
+        type: createUserState.status,
+        // Logic within the AlertBarProvider will automatically open the Alert on the next route change, if a message is queued.
+        openImmediately: false,
+      });
 
-      // Navigate back to the login page.
+      // Navigate back to the login page, since this is a route change the AlertBar will now show the message we queued above.
       router.push('/');
     }
   }, [createUserState?.status]);
