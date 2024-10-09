@@ -55,5 +55,5 @@ export default async function apiRequest<T>(
     );
   }
 
-  return { response, body: (await response.json()) as T };
+  return { response, body: (await response.json()) satisfies T };
 }

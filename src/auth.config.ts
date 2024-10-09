@@ -70,8 +70,8 @@ export const authConfig = {
           const responseBody = await authResponse.json();
           return {
             name: responseBody.user.username,
-            id: authResponse.headers.get('x-auth-token'),
-          } as User;
+            id: authResponse.headers.get('x-auth-token') || '',
+          } satisfies User;
         }
 
         return null;

@@ -4,7 +4,6 @@ import NextLink from 'next/link';
 
 export default async function DashboardPage() {
   const projectData = await fetchProjects();
-  console.log(projectData);
   return (
     <>
       <div>Dashboard</div>
