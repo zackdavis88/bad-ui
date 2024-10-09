@@ -55,20 +55,12 @@ function AlertBarProvider({ children }: { children: React.ReactNode }) {
 
   // Close or show the navbar on route change.
   useEffect(() => {
-    const openOrCloseAlertBar = (callback: () => void) => {
-      setTimeout(callback, 200);
-    };
-
     if (isOpen && message) {
-      openOrCloseAlertBar(() => {
-        setIsOpen(false);
-        setMessage(undefined);
-        setType(undefined);
-      });
+      setIsOpen(false);
+      setMessage(undefined);
+      setType(undefined);
     } else if (!isOpen && message) {
-      openOrCloseAlertBar(() => {
-        setIsOpen(true);
-      });
+      setIsOpen(true);
     }
   }, [pathname]);
 
