@@ -5,25 +5,25 @@ import { AlertBarProvider, AlertBar } from '@/app/components/AlertBar';
 
 export default function UnauthenticatedLayout({ children }: { children: React.ReactNode }) {
   return (
-    <AlertBarProvider>
-      <Box height="100%" display="flex" flexDirection="column">
-        <UnauthenticatedNavbar />
-        <Box
-          display="flex"
-          flexGrow={1}
-          component="main"
-          paddingX={1}
-          width="100%"
-          paddingTop={1}
-          flexDirection="column"
-        >
+    <Box height="100%" display="flex" flexDirection="column">
+      <UnauthenticatedNavbar />
+      <Box
+        display="flex"
+        flexGrow={1}
+        component="main"
+        paddingX={1}
+        width="100%"
+        paddingTop={1}
+        flexDirection="column"
+      >
+        <AlertBarProvider>
           <Box display="flex" minHeight="20%" alignItems="flex-end">
             <AlertBar />
           </Box>
           {children}
-        </Box>
-        <Footer />
+        </AlertBarProvider>
       </Box>
-    </AlertBarProvider>
+      <Footer />
+    </Box>
   );
 }
