@@ -29,24 +29,6 @@ export const authConfig = {
         return false;
       }
 
-      let redirectUrl: URL;
-      try {
-        const searchParams = new URLSearchParams(nextUrl.search);
-        const callbackUrl = new URL(searchParams.get('callbackUrl') || '');
-        redirectUrl = new URL(callbackUrl.pathname, nextUrl);
-      } catch {
-        redirectUrl = new URL('/dashboard', nextUrl);
-      }
-
-      // Edge case where the redirectUrl is /logout. In that case, just take the user to /dashboard
-      if (redirectUrl.pathname === '/logout') {
-        return Response.redirect(new URL('/dashboard', nextUrl));
-      }
-
-      if (!authIsRequired && isLoggedIn) {
-        return Response.redirect(redirectUrl);
-      }
-
       return true;
     },
   },
@@ -69,7 +51,7 @@ export const authConfig = {
         if (authResponse.ok) {
           const responseBody = await authResponse.json();
           return {
-            name: responseBody.user.username,
+            name: responseBody.user.displayName,
             id: authResponse.headers.get('x-auth-token') || '',
           } satisfies User;
         }
