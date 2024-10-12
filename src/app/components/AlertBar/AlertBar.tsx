@@ -70,7 +70,7 @@ const AlertBar = () => {
           backgroundColor,
           borderRadius: 2,
           marginBottom: 2,
-          color: 'textPrimary.main',
+          color: 'text.primary',
         }}
       >
         <Box display="flex" justifyContent="space-between">

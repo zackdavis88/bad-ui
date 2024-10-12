@@ -8,7 +8,7 @@ import Button from '@mui/material/Button';
 import LoginIcon from '@mui/icons-material/Login';
 import NextLink from 'next/link';
 import { login } from '@/app/data/actions/login';
-
+import { ROUTES } from '@/app/constants/routes';
 const LoginForm = () => {
   const [errorMessage, formAction, isPending] = useActionState(login, undefined);
 
@@ -27,7 +27,7 @@ const LoginForm = () => {
       >
         <Typography variant="body2" component="h1">
           You must be logged in to access the app. If you do not have an account you can&nbsp;
-          <Link href="/register" component={NextLink} underline="always" color="textPrimary">
+          <Link href={ROUTES.REGISTER} component={NextLink} underline="always" color="textPrimary">
             register here.
           </Link>
         </Typography>

@@ -1,21 +1,56 @@
 import { AuthError, type NextAuthConfig } from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
+import { ROUTES } from '@/app/constants/routes';
 
 type User = {
   id: string;
   name: string;
 };
 
+const NINE_HOURS = 9 * 60 * 60 * 1000;
+
 export const authConfig = {
   pages: {
-    signIn: '/',
+    signIn: ROUTES.LOGIN,
   },
   callbacks: {
     async jwt({ token, user }) {
+      const now = new Date().getTime();
+
+      // Initial login hits this if-block.
       if (user && user.id && !token.authToken) {
         token.authToken = user.id;
+        token.tokenExpiration = now + NINE_HOURS;
+        return token;
       }
 
+      // Hitting this if-block means we have an expired token, attempt to refresh it.
+      if (
+        typeof token.authToken === 'string' &&
+        typeof token.tokenExpiration === 'number' &&
+        now > token.tokenExpiration
+      ) {
+        try {
+          const refreshTokenResponse = await fetch(`${process.env.API_URL}/auth/token`, {
+            method: 'GET',
+            headers: {
+              'x-auth-token': token.authToken,
+              'content-type': 'application/json',
+            },
+          });
+
+          if (!refreshTokenResponse.headers.get('x-auth-token')) {
+            throw new Error();
+          }
+
+          token.authToken = refreshTokenResponse.headers.get('x-auth-token');
+          token.tokenExpiration = now + NINE_HOURS;
+          return token;
+        } catch {
+          // Refresh failed, kill the token
+          return null;
+        }
+      }
       return token;
     },
     session: async ({ session, token }) => {
@@ -24,27 +59,15 @@ export const authConfig = {
     },
     async authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
-      const authIsRequired = nextUrl.pathname !== '/' && nextUrl.pathname !== '/register';
+      const authIsRequired =
+        nextUrl.pathname !== ROUTES.LOGIN && nextUrl.pathname !== ROUTES.REGISTER;
       if (authIsRequired && !isLoggedIn) {
-        return false;
-      }
-
-      let redirectUrl: URL;
-      try {
-        const searchParams = new URLSearchParams(nextUrl.search);
-        const callbackUrl = new URL(searchParams.get('callbackUrl') || '');
-        redirectUrl = new URL(callbackUrl.pathname, nextUrl);
-      } catch {
-        redirectUrl = new URL('/dashboard', nextUrl);
-      }
-
-      // Edge case where the redirectUrl is /logout. In that case, just take the user to /dashboard
-      if (redirectUrl.pathname === '/logout') {
-        return Response.redirect(new URL('/dashboard', nextUrl));
+        // return false;
+        return Response.redirect(new URL(ROUTES.LOGIN, nextUrl));
       }
 
       if (!authIsRequired && isLoggedIn) {
-        return Response.redirect(redirectUrl);
+        return Response.redirect(new URL(ROUTES.DASHBOARD, nextUrl));
       }
 
       return true;
@@ -69,7 +92,7 @@ export const authConfig = {
         if (authResponse.ok) {
           const responseBody = await authResponse.json();
           return {
-            name: responseBody.user.username,
+            name: responseBody.user.displayName,
             id: authResponse.headers.get('x-auth-token') || '',
           } satisfies User;
         }
@@ -78,4 +101,7 @@ export const authConfig = {
       },
     }),
   ],
+  session: {
+    strategy: 'jwt',
+  },
 } satisfies NextAuthConfig;

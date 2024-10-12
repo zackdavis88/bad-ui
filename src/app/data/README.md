@@ -2,10 +2,11 @@
 
 This is the root folder that contains all things data related in the application:
 
-1. `actions` - API calls that are mutations such as create / update / delete methods.
-2. `fetchers` - API calls that retrieve data.
-3. `utils` - is a place for reusable methods related to data actions / fetchers.
-4. `apiTypings.ts` - is where we will store the typings for API responses.
+1. `auth` - configuration for NextAuth which manages user login/logout.
+2. `actions` - API calls that are mutations such as create / update / delete methods.
+3. `fetchers` - API calls that retrieve data.
+4. `utils` - is a place for reusable methods related to data actions / fetchers.
+5. `apiTypings.ts` - is where we will store the typings for API responses.
 
 ### API Requests
 
