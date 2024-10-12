@@ -13,7 +13,13 @@ const AuthenticatedNavbar = async () => {
     <AppBar position="static">
       <Toolbar>
         <NavbarDrawer displayName={displayName} />
-        <Box display="flex" flexGrow={1} justifyContent="center" alignItems="center">
+        <Box
+          display="flex"
+          flexGrow={1}
+          justifyContent="center"
+          alignItems="center"
+          marginLeft="-40px"
+        >
           <HiveIcon />
           <Typography
             variant="h6"
