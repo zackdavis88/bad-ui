@@ -1,5 +1,5 @@
 'use server';
-import { auth } from '@/auth';
+import { auth } from '@/app/data/auth/auth';
 
 export async function fetchCurrentUser() {
   try {

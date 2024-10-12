@@ -1,4 +1,4 @@
-import { auth } from '@/auth';
+import { auth } from '@/app/data/auth/auth';
 import { Session } from 'next-auth';
 
 interface SessionWithAuthToken extends Session {

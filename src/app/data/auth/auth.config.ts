@@ -6,16 +6,50 @@ type User = {
   name: string;
 };
 
+const NINE_HOURS = 9 * 60 * 60 * 1000;
+
 export const authConfig = {
   pages: {
     signIn: '/',
   },
   callbacks: {
     async jwt({ token, user }) {
+      const now = new Date().getTime();
+
+      // Initial login hits this if-block.
       if (user && user.id && !token.authToken) {
         token.authToken = user.id;
+        token.tokenExpiration = now + NINE_HOURS;
+        return token;
       }
 
+      // Hitting this if-block means we have an expired token, attempt to refresh it.
+      if (
+        typeof token.authToken === 'string' &&
+        typeof token.tokenExpiration === 'number' &&
+        now > token.tokenExpiration
+      ) {
+        try {
+          const refreshTokenResponse = await fetch(`${process.env.API_URL}/auth/token`, {
+            method: 'GET',
+            headers: {
+              'x-auth-token': token.authToken,
+              'content-type': 'application/json',
+            },
+          });
+
+          if (!refreshTokenResponse.headers.get('x-auth-token')) {
+            throw new Error();
+          }
+
+          token.authToken = refreshTokenResponse.headers.get('x-auth-token');
+          token.tokenExpiration = now + NINE_HOURS;
+          return token;
+        } catch {
+          // Refresh failed, kill the token
+          return null;
+        }
+      }
       return token;
     },
     session: async ({ session, token }) => {
@@ -27,6 +61,10 @@ export const authConfig = {
       const authIsRequired = nextUrl.pathname !== '/' && nextUrl.pathname !== '/register';
       if (authIsRequired && !isLoggedIn) {
         return false;
+      }
+
+      if (!authIsRequired && isLoggedIn) {
+        return Response.redirect(new URL('/dashboard', nextUrl));
       }
 
       return true;
@@ -60,4 +98,7 @@ export const authConfig = {
       },
     }),
   ],
+  session: {
+    strategy: 'jwt',
+  },
 } satisfies NextAuthConfig;
