@@ -10,6 +10,7 @@ import Link from '@mui/material/Link';
 import NextLink from 'next/link';
 import { createUser } from '@/app/data/actions/createUser';
 import { AlertBarContext } from '@/app/components/AlertBar';
+import { ROUTES } from '@/app/constants/routes';
 
 const RegisterForm = () => {
   const router = useRouter();
@@ -183,7 +184,7 @@ const RegisterForm = () => {
               &nbsp;Register
             </Typography>
           </Button>
-          <Link href="/" variant="caption" color="textPrimary" component={NextLink}>
+          <Link href={ROUTES.LOGIN} variant="caption" color="textPrimary" component={NextLink}>
             Already have an account?
           </Link>
         </Box>

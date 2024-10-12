@@ -6,6 +6,7 @@ import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import DrawerButtonLink from './DrawerButtonLink';
+import { ROUTES } from '@/app/constants/routes';
 
 export const MyAccountSection = ({
   displayName,
@@ -44,13 +45,13 @@ export const MyAccountSection = ({
       <DrawerButtonLink
         icon={<KeyIcon fontSize="small" />}
         name="Change Password"
-        href="/change-password"
+        href={ROUTES.CHANGE_PASSWORD}
         handleDrawerClose={handleDrawerClose}
       />
       <DrawerButtonLink
         icon={<LogoutIcon fontSize="small" />}
         name="Logout"
-        href="/logout"
+        href={ROUTES.LOGOUT}
         handleDrawerClose={handleDrawerClose}
       />
     </Box>
@@ -81,7 +82,11 @@ export const NavigationSection = ({ handleDrawerClose }: { handleDrawerClose: ()
           &nbsp;Navigation
         </Typography>
       </Divider>
-      <DrawerButtonLink name="Dashboard" href="/dashboard" handleDrawerClose={handleDrawerClose} />
+      <DrawerButtonLink
+        name="Dashboard"
+        href={ROUTES.DASHBOARD}
+        handleDrawerClose={handleDrawerClose}
+      />
     </Box>
   );
 };

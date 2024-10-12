@@ -1,5 +1,6 @@
 import { AuthError, type NextAuthConfig } from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
+import { ROUTES } from '@/app/constants/routes';
 
 type User = {
   id: string;
@@ -10,7 +11,7 @@ const NINE_HOURS = 9 * 60 * 60 * 1000;
 
 export const authConfig = {
   pages: {
-    signIn: '/',
+    signIn: ROUTES.LOGIN,
   },
   callbacks: {
     async jwt({ token, user }) {
@@ -58,13 +59,15 @@ export const authConfig = {
     },
     async authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
-      const authIsRequired = nextUrl.pathname !== '/' && nextUrl.pathname !== '/register';
+      const authIsRequired =
+        nextUrl.pathname !== ROUTES.LOGIN && nextUrl.pathname !== ROUTES.REGISTER;
       if (authIsRequired && !isLoggedIn) {
-        return false;
+        // return false;
+        return Response.redirect(new URL(ROUTES.LOGIN, nextUrl));
       }
 
       if (!authIsRequired && isLoggedIn) {
-        return Response.redirect(new URL('/dashboard', nextUrl));
+        return Response.redirect(new URL(ROUTES.DASHBOARD, nextUrl));
       }
 
       return true;
