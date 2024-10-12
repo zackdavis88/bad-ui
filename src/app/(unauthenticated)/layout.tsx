@@ -17,7 +17,7 @@ export default function UnauthenticatedLayout({ children }: { children: React.Re
         flexDirection="column"
       >
         <AlertBarProvider>
-          <Box display="flex" minHeight="20%" alignItems="flex-end">
+          <Box display="flex" height="120px" alignItems="flex-end">
             <AlertBar />
           </Box>
           {children}
