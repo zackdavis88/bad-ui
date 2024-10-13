@@ -34,3 +34,8 @@ export interface GetProjectsResponse extends PaginationData {
   message: string;
   projects: ProjectData[];
 }
+
+export interface ChangePasswordResponse {
+  message: string;
+  user: UserData;
+}
