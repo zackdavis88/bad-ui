@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useActionState } from 'react';
+import { useEffect, useActionState, useState } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
@@ -8,18 +8,42 @@ import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import AddIcon from '@mui/icons-material/Add';
 import { createProject } from '@/app/data/actions/createProject';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
-// TODO: Handle error states, this only works for happy-path
 const CreateProjectForm = ({ handleClose }: { handleClose?: () => void }) => {
+  const [nameInput, setNameInput] = useState('');
+  const [descriptionInput, setDescriptionInput] = useState('');
   const [createProjectState, formAction, isLoading] = useActionState(createProject, undefined);
+  const pathname = usePathname();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const generalErrorMessage =
+    createProjectState?.status === 'error' &&
+    !createProjectState.errorField &&
+    createProjectState.message;
+
+  const nameErrorMessage =
+    createProjectState?.status === 'error' &&
+    createProjectState?.errorField === 'name' &&
+    createProjectState.message;
+
+  const descriptionErrorMessage =
+    createProjectState?.status === 'error' &&
+    createProjectState?.errorField === 'description' &&
+    createProjectState.message;
 
   useEffect(() => {
     if (createProjectState?.status === 'success') {
+      const updatedSearchParams = new URLSearchParams(searchParams);
+      updatedSearchParams.set('page', '1');
+      router.push(`${pathname}?${updatedSearchParams.toString()}`);
+
       if (handleClose) {
         handleClose();
       }
     }
-  }, [createProjectState?.status, handleClose]);
+  }, [createProjectState?.status, handleClose, pathname, router, searchParams]);
 
   return (
     <form action={formAction}>
@@ -53,6 +77,26 @@ const CreateProjectForm = ({ handleClose }: { handleClose?: () => void }) => {
           borderBottomRightRadius: 6,
         }}
       >
+        {generalErrorMessage && (
+          <Box
+            width="100%"
+            display="flex"
+            sx={{
+              marginBottom: 2,
+            }}
+          >
+            <Box
+              sx={{
+                width: '100%',
+                backgroundColor: 'error.main',
+                padding: 2,
+                borderRadius: 1,
+              }}
+            >
+              {generalErrorMessage}
+            </Box>
+          </Box>
+        )}
         <Box component="div" marginBottom={2}>
           <TextField
             id="name-input"
@@ -62,6 +106,10 @@ const CreateProjectForm = ({ handleClose }: { handleClose?: () => void }) => {
             name="name"
             required
             fullWidth
+            error={!!nameErrorMessage}
+            helperText={nameErrorMessage}
+            value={nameInput}
+            onChange={(event) => setNameInput(event.target.value)}
           />
         </Box>
         <Box component="div" marginBottom={2}>
@@ -75,6 +123,10 @@ const CreateProjectForm = ({ handleClose }: { handleClose?: () => void }) => {
             multiline
             minRows={5}
             maxRows={5}
+            error={!!descriptionErrorMessage}
+            helperText={descriptionErrorMessage}
+            value={descriptionInput}
+            onChange={(event) => setDescriptionInput(event.target.value)}
           />
         </Box>
         <Box component="div" marginBottom={2}>
