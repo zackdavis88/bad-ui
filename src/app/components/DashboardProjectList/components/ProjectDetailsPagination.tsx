@@ -48,6 +48,11 @@ const ProjectDetailsPagination = ({
       rowsPerPage={itemsPerPage}
       onRowsPerPageChange={handleRowsPerPageChange}
       onPageChange={handlePageChange}
+      sx={{
+        '& .MuiTablePagination-input > svg': {
+          color: (theme) => theme.palette.text.primary,
+        },
+      }}
     />
   );
 };

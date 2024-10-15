@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import { CreateProjectButton } from '@/app/components/CreateProjectButton';
 import { DashboardProjectList } from '@/app/components/DashboardProjectList';
-import { fetchDashboardProjects } from '@/app/data/fetchers/fetchDashboardProjects';
+import { ProjectListSkeleton } from '@/app/components/ProjectListSkeleton';
 
 export default async function DashboardPage({
   searchParams,
@@ -14,11 +14,6 @@ export default async function DashboardPage({
     page?: string;
   };
 }) {
-  const dashboardProjects = await fetchDashboardProjects({
-    page: searchParams?.page,
-    itemsPerPage: searchParams?.itemsPerPage,
-  });
-
   return (
     <Box
       display="flex"
@@ -55,9 +50,11 @@ export default async function DashboardPage({
             </Typography>
           </Divider>
         </Box>
-        {/* TODO: Add a skeleton fallback to Suspense */}
-        <Suspense>
-          <DashboardProjectList dashboardProjects={dashboardProjects} />
+        <Suspense fallback={<ProjectListSkeleton />}>
+          <DashboardProjectList
+            page={searchParams?.page}
+            itemsPerPage={searchParams?.itemsPerPage}
+          />
         </Suspense>
       </Box>
     </Box>

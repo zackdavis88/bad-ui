@@ -1,13 +1,20 @@
 import Typography from '@mui/material/Typography';
 import ProjectDetailsTable from './components/ProjectDetailsTable';
 import ProjectDetailsPagination from './components/ProjectDetailsPagination';
-import { GetDashboardProjectsResponse } from '@/app/data/apiTypes';
+import { fetchDashboardProjects } from '@/app/data/fetchers/fetchDashboardProjects';
 
 async function DashboardProjectList({
-  dashboardProjects,
+  itemsPerPage,
+  page,
 }: {
-  dashboardProjects: GetDashboardProjectsResponse;
+  itemsPerPage?: string;
+  page?: string;
 }) {
+  const dashboardProjects = await fetchDashboardProjects({
+    page,
+    itemsPerPage,
+  });
+
   if (!dashboardProjects.projects.length) {
     return (
       <Typography variant="body1" marginTop={2}>

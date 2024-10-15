@@ -38,7 +38,7 @@ const ProjectDetailsTable = ({
   dashboardProjects: GetDashboardProjectsResponse['projects'];
 }) => {
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} sx={{ 'box-shadow': 'none' }}>
       <Table sx={{ minWidth: 650 }} aria-label="dashboard-projects-table">
         <TableHead>
           <TableRow>
