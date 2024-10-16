@@ -5,7 +5,7 @@ export default function AuthenticatedLayout({ children }: { children: React.Reac
   return (
     <Box display="flex" flexDirection="column" width="100%" height="100%">
       <AuthenticatedNavbar />
-      <Box display="flex" flexDirection="column" flexGrow={1}>
+      <Box display="flex" flexDirection="column" flexGrow={1} component="main">
         {children}
       </Box>
     </Box>

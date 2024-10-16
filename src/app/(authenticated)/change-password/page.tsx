@@ -8,7 +8,6 @@ export default async function ChangePasswordPage() {
     <Box
       display="flex"
       flexGrow={1}
-      component="main"
       paddingX={1}
       width="100%"
       paddingTop={1}
