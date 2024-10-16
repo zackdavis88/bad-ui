@@ -26,7 +26,7 @@ const ProjectNameFilter = ({ projectName }: { projectName?: string }) => {
       <TextField
         id="dashboard-project-filter-input"
         label="Name Filter"
-        variant="filled"
+        variant="outlined"
         color="primary"
         name="name"
         fullWidth

@@ -43,6 +43,22 @@ const theme = createTheme({
         root: {
           variants: [
             {
+              props: { variant: 'outlined' },
+              style: {
+                '&.MuiTextField-root': {
+                  '& label': {
+                    color: '#FFFFFF',
+                  },
+                  '& .MuiOutlinedInput-notchedOutline': {
+                    borderColor: '#FFFFFF',
+                  },
+                  '& .Mui-focused .MuiOutlinedInput-notchedOutline': {
+                    borderColor: '#FFFFFF',
+                  },
+                },
+              },
+            },
+            {
               props: { variant: 'filled' },
               style: {
                 '&.MuiTextField-root': {
