@@ -12,6 +12,7 @@ export default async function DashboardPage({
   searchParams?: {
     itemsPerPage?: string;
     page?: string;
+    projectName?: string;
   };
 }) {
   return (
@@ -54,6 +55,7 @@ export default async function DashboardPage({
           <DashboardProjectList
             page={searchParams?.page}
             itemsPerPage={searchParams?.itemsPerPage}
+            projectName={searchParams?.projectName}
           />
         </Suspense>
       </Box>

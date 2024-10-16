@@ -20,7 +20,7 @@ const ProjectListSkeleton = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {new Array(10).fill(null).map((_value, index) => (
+          {new Array(8).fill(null).map((_value, index) => (
             <TableRow key={index}>
               <TableCell>
                 <Skeleton />

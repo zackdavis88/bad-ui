@@ -1,5 +1,5 @@
 'use client';
-import { ChangeEvent, useCallback } from 'react';
+import { useCallback } from 'react';
 import TablePagination from '@mui/material/TablePagination';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 const ProjectDetailsPagination = ({
@@ -15,27 +15,18 @@ const ProjectDetailsPagination = ({
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const handleRowsPerPageChange = useCallback(
-    (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      const updatedSearchParams = new URLSearchParams(searchParams);
-      updatedSearchParams.set('page', '1');
-      updatedSearchParams.set('itemsPerPage', event.target.value);
-
-      const url = `${pathname}?${updatedSearchParams.toString()}`;
-
-      router.push(url);
-    },
-    [searchParams, pathname, router]
-  );
-
   const handlePageChange = useCallback(
     (_event: React.MouseEvent<HTMLButtonElement> | null, page: number) => {
       const updatedSearchParams = new URLSearchParams(searchParams);
-      updatedSearchParams.set('page', (page + 1).toString());
+      if (page !== 0) {
+        updatedSearchParams.set('page', (page + 1).toString());
+      } else {
+        updatedSearchParams.delete('page');
+      }
 
       const url = `${pathname}?${updatedSearchParams.toString()}`;
 
-      router.push(url);
+      router.replace(url);
     },
     [searchParams, pathname, router]
   );
@@ -46,7 +37,7 @@ const ProjectDetailsPagination = ({
       count={totalItems}
       page={page - 1}
       rowsPerPage={itemsPerPage}
-      onRowsPerPageChange={handleRowsPerPageChange}
+      rowsPerPageOptions={[8]}
       onPageChange={handlePageChange}
       sx={{
         '& .MuiTablePagination-input > svg': {
