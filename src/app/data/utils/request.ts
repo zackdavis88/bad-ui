@@ -28,6 +28,7 @@ export default async function apiRequest<T>(
     method?: 'GET' | 'POST' | 'PUT' | 'DELETE';
     headers?: Record<string, string>;
     body?: Record<string, unknown>;
+    query?: Record<string, string>;
   }
 ) {
   const apiUrl = process.env.API_URL || 'http://localhost:3000';
@@ -41,7 +42,12 @@ export default async function apiRequest<T>(
     requestHeaders['x-auth-token'] = authToken;
   }
 
-  const response = await fetch(`${apiUrl}${path}`, {
+  let queryString = '';
+  if (options?.query) {
+    queryString = '?' + new URLSearchParams(options.query).toString();
+  }
+
+  const response = await fetch(`${apiUrl}${path}${queryString}`, {
     method: options?.method || 'GET',
     headers: requestHeaders,
     body: options?.body ? JSON.stringify(options.body) : undefined,
@@ -55,5 +61,5 @@ export default async function apiRequest<T>(
     );
   }
 
-  return { response, body: (await response.json()) satisfies T };
+  return { response, body: (await response.json()) as T satisfies T };
 }

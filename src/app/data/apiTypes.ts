@@ -18,6 +18,10 @@ interface ProjectData {
   deletedBy?: Pick<UserData, 'username' | 'displayName'> | null;
 }
 
+interface DashboardProjectData extends ProjectData {
+  role: 'Admin' | 'Manager' | 'Developer' | 'Viewer';
+}
+
 interface PaginationData {
   page: number;
   itemsPerPage: number;
@@ -30,7 +34,22 @@ export interface CreateUserResponse {
   user: UserData;
 }
 
+export interface CreateProjectResponse {
+  message: string;
+  project: ProjectData;
+}
+
 export interface GetProjectsResponse extends PaginationData {
   message: string;
   projects: ProjectData[];
+}
+
+export interface GetDashboardProjectsResponse extends PaginationData {
+  message: string;
+  projects: DashboardProjectData[];
+}
+
+export interface ChangePasswordResponse {
+  message: string;
+  user: UserData;
 }
