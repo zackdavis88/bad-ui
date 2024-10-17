@@ -5,6 +5,11 @@ import Divider from '@mui/material/Divider';
 import { CreateProjectButton } from '@/app/components/CreateProjectButton';
 import { DashboardProjectList } from '@/app/components/DashboardProjectList';
 import { ProjectListSkeleton } from '@/app/components/ProjectListSkeleton';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Dashboard',
+};
 
 export default async function DashboardPage({
   searchParams,

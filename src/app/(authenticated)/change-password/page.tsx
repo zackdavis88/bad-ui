@@ -2,6 +2,11 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import { AlertBar, AlertBarProvider } from '@/app/components/AlertBar';
 import { ChangePasswordForm } from '@/app/components/ChangePasswordForm';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Change Password',
+};
 
 export default async function ChangePasswordPage() {
   return (
