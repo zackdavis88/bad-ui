@@ -21,11 +21,11 @@ export const MyAccountSection = ({
         orientation="horizontal"
         variant="fullWidth"
         flexItem
-        sx={{
+        sx={(theme) => ({
           marginTop: 2,
-          '&::before': { borderColor: (theme) => theme.palette.text.primary },
-          '&::after': { borderColor: (theme) => theme.palette.text.primary },
-        }}
+          '&::before': { borderColor: theme.palette.text.primary },
+          '&::after': { borderColor: theme.palette.text.primary },
+        })}
       >
         <Typography
           variant="subtitle2"
@@ -65,11 +65,11 @@ export const NavigationSection = ({ handleDrawerClose }: { handleDrawerClose: ()
         orientation="horizontal"
         variant="fullWidth"
         flexItem
-        sx={{
+        sx={(theme) => ({
           marginTop: 2,
-          '&::before': { borderColor: (theme) => theme.palette.text.primary },
-          '&::after': { borderColor: (theme) => theme.palette.text.primary },
-        }}
+          '&::before': { borderColor: theme.palette.text.primary },
+          '&::after': { borderColor: theme.palette.text.primary },
+        })}
       >
         <Typography
           variant="subtitle2"

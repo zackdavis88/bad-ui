@@ -39,11 +39,11 @@ const ProjectDetailsPagination = ({
       rowsPerPage={itemsPerPage}
       rowsPerPageOptions={[8]}
       onPageChange={handlePageChange}
-      sx={{
+      sx={(theme) => ({
         '& .MuiTablePagination-input > svg': {
-          color: (theme) => theme.palette.text.primary,
+          color: theme.palette.text.primary,
         },
-      }}
+      })}
     />
   );
 };
