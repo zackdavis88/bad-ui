@@ -1,8 +1,7 @@
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import HiveIcon from '@mui/icons-material/Hive';
+import { Logo } from './Logo';
 import { NavbarDrawer } from './NavbarDrawer';
 import { fetchCurrentUser } from '@/app/data/fetchers/fetchCurrentUser';
 
@@ -20,16 +19,7 @@ const AuthenticatedNavbar = async () => {
           alignItems="center"
           marginLeft="-40px"
         >
-          <HiveIcon />
-          <Typography
-            variant="h6"
-            component="div"
-            display="flex"
-            justifyContent="center"
-            marginLeft="8px"
-          >
-            Honeycomb
-          </Typography>
+          <Logo />
         </Box>
       </Toolbar>
     </AppBar>

@@ -5,7 +5,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import DrawerButtonLink from './DrawerButtonLink';
+import { DrawerButtonLink } from './DrawerButtonLink';
 import { ROUTES } from '@/app/constants/routes';
 
 export const MyAccountSection = ({

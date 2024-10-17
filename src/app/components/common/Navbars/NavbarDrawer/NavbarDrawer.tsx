@@ -7,7 +7,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
-import { NavigationSection, MyAccountSection } from './components/NavbarDrawerSections';
+import { NavigationSection, MyAccountSection } from './NavbarDrawerSections';
 
 const NavbarDrawer = ({ displayName }: { displayName: string }) => {
   const [isOpen, setIsOpen] = useState(false);

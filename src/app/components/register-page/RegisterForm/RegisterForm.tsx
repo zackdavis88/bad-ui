@@ -2,12 +2,12 @@
 import { useEffect, useActionState, useContext } from 'react';
 import { useRouter } from 'next/navigation';
 import { createUser } from '@/app/data/actions/createUser';
-import { AlertBarContext } from '@/app/components/general/AlertBar';
-import RegisterFormHeader from './components/RegisterFormHeader';
-import RegisterFormAlert from './components/RegisterFormAlert';
-import RegisterFormBody from './components/RegisterFormBody';
-import RegisterFormInputs from './components/RegisterFormInputs';
-import RegisterFormSubmit from './components/RegisterFormSubmit';
+import { AlertBarContext } from '@/app/components/common/AlertBar';
+import { RegisterFormHeader } from './RegisterFormHeader';
+import { RegisterFormAlert } from './RegisterFormAlert';
+import { RegisterFormBody } from './RegisterFormBody';
+import { RegisterFormInputs } from './RegisterFormInputs';
+import { RegisterFormSubmit } from './RegisterFormSubmit';
 
 const RegisterForm = () => {
   const router = useRouter();
