@@ -1,15 +1,10 @@
 import { Metadata } from 'next';
-import Container from '@mui/material/Container';
-import { LogoutSpinner } from '@/app/components/LogoutSpinner';
+import { LogoutPageContent } from '@/app/components/logout-page';
 
 export const metadata: Metadata = {
   title: 'Logout',
 };
 
 export default function LogoutPage() {
-  return (
-    <Container maxWidth="sm">
-      <LogoutSpinner />
-    </Container>
-  );
+  return <LogoutPageContent />;
 }
