@@ -1,20 +1,19 @@
 'use client';
 import { usePathname } from 'next/navigation';
 import { createContext, useState, useEffect, useCallback } from 'react';
-
-export type AlertType = 'info' | 'success' | 'warning' | 'error' | undefined;
+import { AlertProps } from '@mui/material/Alert';
 
 interface AlertBarState {
   isOpen: boolean;
   message: string | undefined;
-  type: AlertType;
+  type: AlertProps['severity'];
   handleOpen: ({
     message,
     type,
     openImmediately,
   }: {
     message: string;
-    type: AlertType;
+    type: AlertProps['severity'];
     openImmediately?: boolean;
   }) => void;
   handleClose: () => void;
