@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import { AlertBar, AlertBarProvider } from '@/app/components/AlertBar';
+import { AlertBar, AlertBarProvider } from '@/app/components/general/AlertBar';
 import { ChangePasswordForm } from '@/app/components/ChangePasswordForm';
 import { Metadata } from 'next';
 

@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 import { UnauthenticatedNavbar } from '@/app/components/Navbar';
 import { Footer } from '@/app/components/Footer';
-import { AlertBarProvider, AlertBar } from '@/app/components/AlertBar';
+import { AlertBarProvider, AlertBar } from '@/app/components/general/AlertBar';
 
 export default function UnauthenticatedLayout({ children }: { children: React.ReactNode }) {
   return (

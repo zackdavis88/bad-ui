@@ -6,7 +6,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import KeyIcon from '@mui/icons-material/Key';
 import { changePassword } from '@/app/data/actions/changePassword';
-import { AlertBarContext } from '@/app/components/AlertBar';
+import { AlertBarContext } from '@/app/components/general/AlertBar';
 
 const ChangePasswordForm = () => {
   const [changePasswordState, formAction, isPending] = useActionState(changePassword, undefined);

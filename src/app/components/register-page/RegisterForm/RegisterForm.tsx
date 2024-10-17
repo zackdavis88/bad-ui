@@ -2,7 +2,7 @@
 import { useEffect, useActionState, useContext } from 'react';
 import { useRouter } from 'next/navigation';
 import { createUser } from '@/app/data/actions/createUser';
-import { AlertBarContext } from '@/app/components/AlertBar';
+import { AlertBarContext } from '@/app/components/general/AlertBar';
 import RegisterFormHeader from './components/RegisterFormHeader';
 import RegisterFormAlert from './components/RegisterFormAlert';
 import RegisterFormBody from './components/RegisterFormBody';
