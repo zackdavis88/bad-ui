@@ -2,7 +2,7 @@
 import { useState, useCallback } from 'react';
 import Button from '@mui/material/Button';
 import AddIcon from '@mui/icons-material/Add';
-import { StyledModal } from '@/app/components/StyledModal';
+import { StyledModal } from '@/app/components/common/StyledModal';
 import { CreateProjectForm } from '@/app/components/CreateProjectForm';
 
 const CreateProjectButton = () => {
