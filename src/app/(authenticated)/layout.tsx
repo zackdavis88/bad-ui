@@ -1,5 +1,5 @@
 import Box from '@mui/material/Box';
-import { AuthenticatedNavbar } from '@/app/components/Navbar';
+import { AuthenticatedNavbar } from '@/app/components/common/Navbars';
 
 export default function AuthenticatedLayout({ children }: { children: React.ReactNode }) {
   return (

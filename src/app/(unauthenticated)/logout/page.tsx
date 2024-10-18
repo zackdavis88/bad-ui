@@ -1,20 +1,8 @@
-'use client';
-import Box from '@mui/material/Box';
-import CircularProgress from '@mui/material/CircularProgress';
-import Container from '@mui/material/Container';
-import { logout } from '@/app/data/actions/logout';
-import { useEffect } from 'react';
+import { Metadata } from 'next';
+import { LogoutPageContent } from '@/app/components/logout-page';
 
-export default function LogoutPage() {
-  useEffect(() => {
-    logout();
-  });
+export const metadata: Metadata = {
+  title: 'Logout',
+};
 
-  return (
-    <Container maxWidth="sm">
-      <Box display="flex" justifyContent="center" marginTop={6}>
-        <CircularProgress />
-      </Box>
-    </Container>
-  );
-}
+export default LogoutPageContent;

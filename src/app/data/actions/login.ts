@@ -13,9 +13,9 @@ export async function login(_prevState: string | undefined, formData: FormData) 
     if (error instanceof AuthError) {
       switch (error.type) {
         case 'CredentialsSignin':
-          return 'Invalid credentials.';
+          return 'Username and password combination is invalid';
         default:
-          return 'Something went wrong.';
+          return 'Something went wrong, please refresh the page or try again later';
       }
     }
     throw error;

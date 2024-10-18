@@ -9,6 +9,21 @@ interface CreateProjectState {
   message: string;
 }
 
+class ClientValidationError extends Error {
+  errorField: CreateProjectState['errorField'];
+
+  constructor({
+    message,
+    errorField,
+  }: {
+    message: string;
+    errorField: CreateProjectState['errorField'];
+  }) {
+    super(message);
+    this.errorField = errorField;
+  }
+}
+
 export async function createProject(
   _prevState: CreateProjectState | undefined,
   formData: FormData
@@ -25,27 +40,24 @@ export async function createProject(
     }
 
     if (name.length < 3 || name.length > 30) {
-      return {
-        status: 'error',
-        errorField: 'name',
+      throw new ClientValidationError({
         message: 'Name must be 3 - 30 characters in length',
-      };
+        errorField: 'name',
+      });
     }
 
     if (!new RegExp('^[A-Za-z0-9-_+=&^%$#*@!|/(){}?.,<>;\':" ]+$').test(name)) {
-      return {
-        status: 'error',
-        errorField: 'name',
+      throw new ClientValidationError({
         message: 'Name contains invalid characters',
-      };
+        errorField: 'name',
+      });
     }
 
     if (typeof description === 'string' && description.length > 350) {
-      return {
-        status: 'error',
-        errorField: 'description',
+      throw new ClientValidationError({
         message: 'Description must be 350 characters or less',
-      };
+        errorField: 'description',
+      });
     }
 
     // Send off the request to the API.
@@ -67,6 +79,14 @@ export async function createProject(
       message: body.message,
     };
   } catch (error) {
+    if (error instanceof ClientValidationError) {
+      return {
+        status: 'error',
+        errorField: error.errorField,
+        message: error.message,
+      };
+    }
+
     if (error instanceof ApiError && error.errorType === ErrorTypes.VALIDATION) {
       let errorField: 'name' | 'description' | undefined;
 
@@ -85,7 +105,7 @@ export async function createProject(
 
     return {
       status: 'error',
-      message: 'Something went wrong',
+      message: 'Something went wrong, please refresh the page or try again later',
     };
   }
 }

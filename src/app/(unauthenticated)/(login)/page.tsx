@@ -1,10 +1,8 @@
-import Container from '@mui/material/Container';
-import { LoginForm } from '@/app/components/LoginForm';
+import { Metadata } from 'next';
+import { LoginPageContent } from '@/app/components/login-page';
 
-export default function LoginPage() {
-  return (
-    <Container maxWidth="sm">
-      <LoginForm />
-    </Container>
-  );
-}
+export const metadata: Metadata = {
+  title: 'Login',
+};
+
+export default LoginPageContent;
