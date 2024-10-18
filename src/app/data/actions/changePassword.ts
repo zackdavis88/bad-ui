@@ -9,6 +9,21 @@ interface ChangePasswordState {
   message: string;
 }
 
+class ClientValidationError extends Error {
+  errorField: ChangePasswordState['errorField'];
+
+  constructor({
+    message,
+    errorField,
+  }: {
+    message: string;
+    errorField: ChangePasswordState['errorField'];
+  }) {
+    super(message);
+    this.errorField = errorField;
+  }
+}
+
 export async function changePassword(
   _prevState: ChangePasswordState | undefined,
   formData: FormData
@@ -29,27 +44,24 @@ export async function changePassword(
     }
 
     if (password.length < 8) {
-      return {
-        status: 'error',
-        errorField: 'password',
+      throw new ClientValidationError({
         message: 'Password must be at least 8 characters in length',
-      };
+        errorField: 'password',
+      });
     }
 
     if (!new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).+$').test(password)) {
-      return {
-        status: 'error',
-        errorField: 'password',
+      throw new ClientValidationError({
         message: 'Password must have 1 uppercase, lowercase, and number character',
-      };
+        errorField: 'password',
+      });
     }
 
     if (confirmPassword !== password) {
-      return {
-        status: 'error',
-        errorField: 'confirmPassword',
+      throw new ClientValidationError({
         message: 'Password fields do not match',
-      };
+        errorField: 'confirmPassword',
+      });
     }
 
     // Send off the request to the API.
@@ -60,6 +72,7 @@ export async function changePassword(
         message: 'Authenticated user not found',
       };
     }
+
     await apiRequest<ChangePasswordResponse>(`/users/${displayName}`, {
       method: 'POST',
       body: {
@@ -73,6 +86,14 @@ export async function changePassword(
       message: 'Password has been successfully updated',
     };
   } catch (error) {
+    if (error instanceof ClientValidationError) {
+      return {
+        status: 'error',
+        errorField: error.errorField,
+        message: error.message,
+      };
+    }
+
     if (error instanceof ApiError && error.errorType === ErrorTypes.VALIDATION) {
       let errorField: 'currentPassword' | 'password' | undefined;
       let message = error.message;
@@ -94,7 +115,7 @@ export async function changePassword(
 
     return {
       status: 'error',
-      message: 'Something went wrong',
+      message: 'Something went wrong, please refresh the page or try again later',
     };
   }
 }
