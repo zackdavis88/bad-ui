@@ -3,13 +3,9 @@ import { DashboardActions } from './DashboardActions';
 import { DashboardProjects } from './DashboardProjects';
 
 const DashboardContent = ({
-  itemsPerPage,
-  page,
-  projectName,
+  searchParams,
 }: {
-  itemsPerPage?: string;
-  page?: string;
-  projectName?: string;
+  searchParams?: { itemsPerPage?: string; page?: string; projectName?: string };
 }) => {
   return (
     <Box
@@ -20,7 +16,11 @@ const DashboardContent = ({
       sx={{ paddingX: { xl: 20, sm: 10, xs: 2 }, paddingTop: { sm: 5, xs: 2 } }}
     >
       <DashboardActions />
-      <DashboardProjects itemsPerPage={itemsPerPage} page={page} projectName={projectName} />
+      <DashboardProjects
+        itemsPerPage={searchParams?.itemsPerPage}
+        page={searchParams?.page}
+        projectName={searchParams?.projectName}
+      />
     </Box>
   );
 };

@@ -5,6 +5,4 @@ export const metadata: Metadata = {
   title: 'Logout',
 };
 
-export default function LogoutPage() {
-  return <LogoutPageContent />;
-}
+export default LogoutPageContent;

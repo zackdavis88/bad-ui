@@ -5,6 +5,4 @@ export const metadata: Metadata = {
   title: 'Register',
 };
 
-export default function RegisterPage() {
-  return <RegisterPageContent />;
-}
+export default RegisterPageContent;
