@@ -2,7 +2,8 @@
 import { useCallback } from 'react';
 import TablePagination from '@mui/material/TablePagination';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-const ProjectDetailsPagination = ({
+
+const ProjectsPagination = ({
   itemsPerPage,
   page,
   totalItems,
@@ -48,4 +49,4 @@ const ProjectDetailsPagination = ({
   );
 };
 
-export default ProjectDetailsPagination;
+export default ProjectsPagination;

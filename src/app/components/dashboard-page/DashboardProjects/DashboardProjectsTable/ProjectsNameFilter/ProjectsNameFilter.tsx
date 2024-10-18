@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useDebouncedCallback } from 'use-debounce';
 
-const ProjectNameFilter = ({ projectName }: { projectName?: string }) => {
+const ProjectsNameFilter = ({ projectName }: { projectName?: string }) => {
   const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -22,7 +22,7 @@ const ProjectNameFilter = ({ projectName }: { projectName?: string }) => {
   }, 300);
 
   return (
-    <Box component="div" width={300} sx={{ marginBottom: { xs: 2, md: 0 } }}>
+    <Box component="div" sx={{ marginBottom: { xs: 2, md: 0 }, width: 300 }}>
       <TextField
         id="dashboard-project-filter-input"
         label="Name Filter"
@@ -37,4 +37,4 @@ const ProjectNameFilter = ({ projectName }: { projectName?: string }) => {
   );
 };
 
-export default ProjectNameFilter;
+export default ProjectsNameFilter;

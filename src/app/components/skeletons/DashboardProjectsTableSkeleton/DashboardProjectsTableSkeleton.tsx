@@ -8,7 +8,7 @@ import TableCell from '@mui/material/TableCell';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 
-const ProjectListSkeleton = () => {
+const DashboardProjectsTableSkeleton = () => {
   return (
     <>
       <Box
@@ -22,8 +22,6 @@ const ProjectListSkeleton = () => {
         }}
       >
         <Skeleton
-          width={300}
-          height={56}
           sx={{
             width: '300px',
             height: '56px',
@@ -66,4 +64,4 @@ const ProjectListSkeleton = () => {
   );
 };
 
-export default ProjectListSkeleton;
+export default DashboardProjectsTableSkeleton;

@@ -1,11 +1,11 @@
-import Typography from '@mui/material/Typography';
-import ProjectDetailsTable from './components/ProjectDetailsTable';
-import ProjectDetailsPagination from './components/ProjectDetailsPagination';
-import ProjectNameFilter from './components/ProjectNameFilter';
 import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 import { fetchDashboardProjects } from '@/app/data/fetchers/fetchDashboardProjects';
+import { ProjectsNameFilter } from './ProjectsNameFilter';
+import { ProjectsPagination } from './ProjectsPagination';
+import { ProjectsTable } from './ProjectsTable';
 
-async function DashboardProjectList({
+const DashboardProjectsTable = async ({
   itemsPerPage,
   page,
   projectName,
@@ -13,7 +13,7 @@ async function DashboardProjectList({
   itemsPerPage?: string;
   page?: string;
   projectName?: string;
-}) {
+}) => {
   const dashboardProjects = await fetchDashboardProjects({
     page,
     itemsPerPage,
@@ -49,16 +49,16 @@ async function DashboardProjectList({
           },
         }}
       >
-        <ProjectNameFilter projectName={projectName} />
-        <ProjectDetailsPagination
-          totalItems={dashboardProjects.totalItems}
-          page={dashboardProjects.page}
+        <ProjectsNameFilter projectName={projectName} />
+        <ProjectsPagination
           itemsPerPage={dashboardProjects.itemsPerPage}
+          page={dashboardProjects.page}
+          totalItems={dashboardProjects.totalItems}
         />
       </Box>
-      <ProjectDetailsTable dashboardProjects={dashboardProjects.projects} />
+      <ProjectsTable dashboardProjects={dashboardProjects.projects} />
     </>
   );
-}
+};
 
-export default DashboardProjectList;
+export default DashboardProjectsTable;

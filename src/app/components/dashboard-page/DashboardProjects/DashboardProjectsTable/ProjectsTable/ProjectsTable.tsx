@@ -32,7 +32,7 @@ const RowLink = ({
   );
 };
 
-const ProjectDetailsTable = ({
+const ProjectTable = ({
   dashboardProjects,
 }: {
   dashboardProjects: GetDashboardProjectsResponse['projects'];
@@ -60,7 +60,6 @@ const ProjectDetailsTable = ({
                   '&.MuiTableRow-hover:hover': { backgroundColor: '#212121' },
                 }}
                 hover
-                aria-describedby=""
               >
                 <TableCell component="th" scope="row">
                   <RowLink href={linkHref} tabIndex={0}>
@@ -85,4 +84,4 @@ const ProjectDetailsTable = ({
   );
 };
 
-export default ProjectDetailsTable;
+export default ProjectTable;
