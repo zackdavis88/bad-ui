@@ -2,6 +2,7 @@ import Box from '@mui/material/Box';
 import { Suspense } from 'react';
 import { ProjectActions } from './ProjectActions';
 import { ProjectActionsSkeleton } from '@/app/components/skeletons/ProjectDetails';
+import { ProjectDetailsSection } from './ProjectDetailsSection';
 
 const ProjectDetailsPageContent = ({ params }: { params: { projectId: string } }) => {
   return (
@@ -14,6 +15,9 @@ const ProjectDetailsPageContent = ({ params }: { params: { projectId: string } }
     >
       <Suspense fallback={<ProjectActionsSkeleton />}>
         <ProjectActions projectId={params.projectId} />
+      </Suspense>
+      <Suspense fallback={<div>TODO: Do this lol.</div>}>
+        <ProjectDetailsSection projectId={params.projectId} />
       </Suspense>
     </Box>
   );

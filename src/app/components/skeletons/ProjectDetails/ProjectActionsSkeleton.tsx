@@ -13,9 +13,10 @@ const ProjectActionsSkeleton = () => {
         justifyContent: {
           xs: 'flex-start',
         },
+        marginBottom: { xs: 2 },
       }}
     >
-      <Box sx={{ marginRight: { xs: 0, sm: 2 }, marginBottom: { xs: 2, sm: 0 } }}>
+      <Box sx={{ marginRight: { xs: 0, sm: 2 } }}>
         <Skeleton variant="rounded" width={89} height={37} />
       </Box>
       <Box sx={{ marginBottom: { xs: 2, sm: 0 } }}>

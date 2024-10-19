@@ -6,7 +6,7 @@ import { CreateProjectFormHeader } from './CreateProjectFormHeader';
 import { CreateProjectFormBody } from './CreateProjectFormBody';
 import { CreateProjectFormAlert } from './CreateProjectFormAlert';
 import { CreateProjectFormInputs } from './CreateProjectFormInputs';
-import CreateProjectFormSubmit from './CreateProjectFormSubmit/CreateProjectFormSubmit';
+import { CreateProjectFormSubmit } from './CreateProjectFormSubmit';
 
 const CreateProjectForm = ({ handleClose }: { handleClose?: () => void }) => {
   const [createProjectState, formAction, isLoading] = useActionState(createProject, undefined);

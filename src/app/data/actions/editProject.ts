@@ -1,11 +1,18 @@
 'use server';
 import apiRequest, { ApiError, ErrorTypes } from '@/app/data/utils/request';
-import { CreateProjectResponse } from '@/app/data/apiTypes';
+import { UpdateProjectResponse } from '@/app/data/apiTypes';
+import { revalidatePath } from 'next/cache';
 
 interface CreateProjectState {
   status: 'success' | 'error';
   errorField?: 'name' | 'description';
   message: string;
+}
+
+interface CurrentProjectData {
+  projectId: string;
+  projectName: string;
+  projectDescription: string;
 }
 
 class ClientValidationError extends Error {
@@ -23,19 +30,27 @@ class ClientValidationError extends Error {
   }
 }
 
-export async function createProject(
+export async function editProject(
+  { projectId, projectName, projectDescription }: CurrentProjectData,
   _prevState: CreateProjectState | undefined,
   formData: FormData
 ): Promise<CreateProjectState> {
   try {
     const name = formData.get('name');
     const description = formData.get('description');
-    const createDefaultStatuses = formData.get('createDefaultStatuses') === 'on';
 
     // Some client validation that matches what the API does, to cut down on the amount of requests
     // that will get rejected from the API.
-    if (typeof name !== 'string') {
+    if (typeof name !== 'string' || typeof description !== 'string') {
       throw new Error();
+    }
+
+    // If new values are the same as current values, short circuit everything and return a success response
+    if (name === projectName && description === projectDescription) {
+      return {
+        status: 'success',
+        message: 'No update data provided',
+      };
     }
 
     if (name.length < 3 || name.length > 30) {
@@ -60,16 +75,15 @@ export async function createProject(
     }
 
     // Send off the request to the API.
-    const { body } = await apiRequest<CreateProjectResponse>('/projects', {
+    const { body } = await apiRequest<UpdateProjectResponse>(`/projects/${projectId}`, {
       method: 'POST',
       body: {
         name: name.trim(),
         description: (typeof description === 'string' && description.trim()) || description,
       },
-      query: {
-        createDefaultStatuses: createDefaultStatuses.toString(),
-      },
     });
+
+    revalidatePath('/projects/[projectId]');
 
     return {
       status: 'success',

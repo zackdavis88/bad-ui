@@ -84,3 +84,8 @@ export interface RemoveProjectResponse {
   message: string;
   project: ProjectData;
 }
+
+export interface UpdateProjectResponse {
+  message: string;
+  project: ProjectData;
+}
