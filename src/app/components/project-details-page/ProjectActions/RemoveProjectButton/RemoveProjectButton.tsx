@@ -27,7 +27,7 @@ const RemoveProjectButton = ({
   }, []);
 
   return (
-    <Box sx={{ marginRight: { xs: 0, sm: 2 }, marginBottom: { xs: 2, sm: 0 } }}>
+    <Box sx={{ marginBottom: { xs: 2, sm: 0 } }}>
       {disabled ? (
         <Tooltip title="You don't have permission to do this">
           <span>

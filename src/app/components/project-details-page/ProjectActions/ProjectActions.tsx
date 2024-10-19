@@ -3,7 +3,6 @@ import { fetchProjectPermissions } from '@/app/data/fetchers/fetchProjectPermiss
 import { fetchProject } from '@/app/data/fetchers/fetchProject';
 import { RemoveProjectButton } from './RemoveProjectButton';
 import { EditProjectButton } from './EditProjectButton';
-
 const ProjectActions = async ({ projectId }: { projectId: string }) => {
   const { permissions } = await fetchProjectPermissions({ projectId });
   const { project } = await fetchProject({ projectId });
@@ -18,7 +17,7 @@ const ProjectActions = async ({ projectId }: { projectId: string }) => {
         },
         justifyContent: {
           xs: 'flex-start',
-          sm: 'space-between',
+          sm: 'flex-start',
         },
       }}
     >

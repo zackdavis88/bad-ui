@@ -1,8 +1,6 @@
 'use server';
 import apiRequest, { ApiError, ErrorTypes } from '@/app/data/utils/request';
 import { CreateProjectResponse } from '@/app/data/apiTypes';
-import { revalidatePath } from 'next/cache';
-import { ROUTES } from '@/app/constants/routes';
 
 interface CreateProjectState {
   status: 'success' | 'error';
@@ -72,8 +70,6 @@ export async function createProject(
         createDefaultStatuses: createDefaultStatuses.toString(),
       },
     });
-
-    revalidatePath(ROUTES.DASHBOARD);
 
     return {
       status: 'success',
