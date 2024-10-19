@@ -53,3 +53,34 @@ export interface ChangePasswordResponse {
   message: string;
   user: UserData;
 }
+
+export interface GetProjectPermissionsResponse {
+  message: string;
+  permissions: {
+    canRemoveProject: boolean;
+    canUpdateProject: boolean;
+    canCreateAdminMembership: boolean;
+    canCreateMembership: boolean;
+    canUpdateAdminMembership: boolean;
+    canUpdateMembership: boolean;
+    canRemoveAdminMembership: boolean;
+    canRemoveMembership: boolean;
+    canCreateStatus: boolean;
+    canUpdateStatus: boolean;
+    canRemoveStatus: boolean;
+    canCreateStory: boolean;
+    canUpdateStory: boolean;
+    canRemoveStory: boolean;
+    canReadStory: boolean;
+  };
+}
+
+export interface GetProjectResponse {
+  message: string;
+  project: ProjectData;
+}
+
+export interface RemoveProjectResponse {
+  message: string;
+  project: ProjectData;
+}

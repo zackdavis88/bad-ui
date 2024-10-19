@@ -8,6 +8,7 @@ import { RegisterFormAlert } from './RegisterFormAlert';
 import { RegisterFormBody } from './RegisterFormBody';
 import { RegisterFormInputs } from './RegisterFormInputs';
 import { RegisterFormSubmit } from './RegisterFormSubmit';
+import { ROUTES } from '@/app/constants/routes';
 
 const RegisterForm = () => {
   const router = useRouter();
@@ -51,7 +52,7 @@ const RegisterForm = () => {
       });
 
       // Navigate back to the login page, since this is a route change the AlertBar will now show the message we queued above.
-      router.push('/');
+      router.push(ROUTES.LOGIN);
     }
   }, [createUserState?.status, createUserState?.message, handleOpen, router]);
 

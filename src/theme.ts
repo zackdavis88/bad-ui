@@ -114,6 +114,28 @@ const theme = createTheme({
                 },
               },
             },
+            {
+              props: { variant: 'contained', color: 'error', disabled: true },
+              style: {
+                '&.MuiButton-root': {
+                  '&.Mui-disabled': {
+                    backgroundColor: '#771818',
+                    color: '#D7D7D7',
+                  },
+                },
+              },
+            },
+            {
+              props: { variant: 'contained', color: 'info', disabled: true },
+              style: {
+                '&.MuiButton-root': {
+                  '&.Mui-disabled': {
+                    backgroundColor: '#024369',
+                    color: '#D7D7D7',
+                  },
+                },
+              },
+            },
           ],
         },
       },
