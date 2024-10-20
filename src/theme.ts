@@ -140,6 +140,15 @@ const theme = createTheme({
         },
       },
     },
+    MuiBreadcrumbs: {
+      styleOverrides: {
+        root: {
+          '&.MuiBreadcrumbs-root': {
+            color: '#B7B7B7',
+          },
+        },
+      },
+    },
   },
 });
 
