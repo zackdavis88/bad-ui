@@ -30,6 +30,28 @@ const ProjectDetailsSectionSkeleton = () => {
           </Typography>
         </Divider>
       </Box>
+      {/* Actions section */}
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: {
+            xs: 'column-reverse',
+            sm: 'row',
+          },
+          justifyContent: {
+            xs: 'flex-start',
+          },
+          marginBottom: { xs: 2 },
+        }}
+      >
+        <Box sx={{ marginRight: { xs: 0, sm: 2 } }}>
+          <Skeleton variant="rounded" width={89} height={37} />
+        </Box>
+        <Box sx={{ marginBottom: { xs: 2, sm: 0 } }}>
+          <Skeleton variant="rounded" width={115} height={37} />
+        </Box>
+      </Box>
+      {/* Details section */}
       <Grid container spacing={2}>
         <Grid size={{ xs: 12, md: 6 }}>
           <Grid container spacing={2}>

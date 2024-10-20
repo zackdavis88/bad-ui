@@ -4,12 +4,9 @@ import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import NextLink from 'next/link';
 import { Suspense } from 'react';
-import { ProjectActions } from './ProjectActions';
-import {
-  ProjectActionsSkeleton,
-  ProjectDetailsSectionSkeleton,
-} from '@/app/components/skeletons/ProjectDetails';
+import { ProjectDetailsSectionSkeleton } from '@/app/components/skeletons/ProjectDetails';
 import { ProjectDetailsSection } from './ProjectDetailsSection';
+import { ProjectMembershipsSection } from './ProjectMembershipsSection';
 import { ROUTES } from '@/app/constants/routes';
 
 const ProjectDetailsPageContent = ({ params }: { params: { projectId: string } }) => {
@@ -30,11 +27,11 @@ const ProjectDetailsPageContent = ({ params }: { params: { projectId: string } }
         </Link>
         <Typography sx={{ color: 'text.primary', fontWeight: 'bold' }}>Project Details</Typography>
       </Breadcrumbs>
-      <Suspense fallback={<ProjectActionsSkeleton />}>
-        <ProjectActions projectId={params.projectId} />
-      </Suspense>
       <Suspense fallback={<ProjectDetailsSectionSkeleton />}>
         <ProjectDetailsSection projectId={params.projectId} />
+      </Suspense>
+      <Suspense fallback={<div>TODO: Do this.</div>}>
+        <ProjectMembershipsSection projectId={params.projectId} />
       </Suspense>
     </Box>
   );

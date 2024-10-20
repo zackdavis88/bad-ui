@@ -1,12 +1,15 @@
 import Box from '@mui/material/Box';
-import { fetchProjectPermissions } from '@/app/data/fetchers/fetchProjectPermissions';
-import { fetchProject } from '@/app/data/fetchers/fetchProject';
 import { RemoveProjectButton } from './RemoveProjectButton';
 import { EditProjectButton } from './EditProjectButton';
-const ProjectActions = async ({ projectId }: { projectId: string }) => {
-  const { permissions } = await fetchProjectPermissions({ projectId });
-  const { project } = await fetchProject({ projectId });
+import { GetProjectPermissionsResponse, GetProjectResponse } from '@/app/data/apiTypes';
 
+const ProjectActions = async ({
+  project,
+  permissions,
+}: {
+  project: GetProjectResponse['project'];
+  permissions: GetProjectPermissionsResponse['permissions'];
+}) => {
   return (
     <Box
       sx={{
