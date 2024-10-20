@@ -22,13 +22,14 @@ const DashboardProjectsTableSkeleton = () => {
         }}
       >
         <Skeleton
+          variant="rounded"
           sx={{
             width: '300px',
             height: '56px',
             marginBottom: { xs: 2, md: 0 },
           }}
         />
-        <Skeleton width={162} height={52} />
+        <Skeleton variant="rounded" width={155} height={40} />
       </Box>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="dashboard-projects-table">
