@@ -12,7 +12,7 @@ const ProjectDetailsSection = async ({ projectId }: { projectId: string }) => {
   const { project } = await fetchProject({ projectId });
 
   return (
-    <Box display="flex" flexDirection="column" marginBottom={4}>
+    <Box display="flex" flexDirection="column" marginBottom={8}>
       <ProjectDetailsHeader />
       <ProjectActions project={project} permissions={permissions} />
       <Grid container spacing={2}>

@@ -136,6 +136,17 @@ const theme = createTheme({
                 },
               },
             },
+            {
+              props: { variant: 'contained', color: 'success', disabled: true },
+              style: {
+                '&.MuiButton-root': {
+                  '&.Mui-disabled': {
+                    backgroundColor: '#144C0A',
+                    color: '#D7D7D7',
+                  },
+                },
+              },
+            },
           ],
         },
       },

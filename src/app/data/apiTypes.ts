@@ -18,6 +18,21 @@ interface ProjectData {
   deletedBy?: Pick<UserData, 'username' | 'displayName'> | null;
 }
 
+export interface MembershipData {
+  id: string;
+  user: Pick<UserData, 'username' | 'displayName'>;
+  project: Pick<ProjectData, 'id' | 'name'>;
+  isProjectAdmin: boolean;
+  isProjectManager: boolean;
+  isProjectDeveloper: boolean;
+  createdOn: Date;
+  updatedOn?: Date | null;
+  deletedOn?: Date;
+  createdBy: Pick<UserData, 'username' | 'displayName'> | null;
+  updatedBy?: Pick<UserData, 'username' | 'displayName'> | null;
+  deletedBy?: Pick<UserData, 'username' | 'displayName'>;
+}
+
 interface DashboardProjectData extends ProjectData {
   role: 'Admin' | 'Manager' | 'Developer' | 'Viewer';
 }
@@ -88,4 +103,19 @@ export interface RemoveProjectResponse {
 export interface UpdateProjectResponse {
   message: string;
   project: ProjectData;
+}
+
+export interface GetProjectMembershipsResponse extends PaginationData {
+  message: string;
+  memberships: MembershipData[];
+}
+
+export interface GetUserResponse {
+  message: string;
+  user: UserData;
+}
+
+export interface CreateMembershipResponse {
+  message: string;
+  membership: MembershipData;
 }

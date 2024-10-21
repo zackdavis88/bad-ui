@@ -29,6 +29,9 @@ export default async function apiRequest<T>(
     headers?: Record<string, string>;
     body?: Record<string, unknown>;
     query?: Record<string, string>;
+    next?: {
+      tags: string[];
+    };
   }
 ) {
   const apiUrl = process.env.API_URL || 'http://localhost:3000';
@@ -51,6 +54,7 @@ export default async function apiRequest<T>(
     method: options?.method || 'GET',
     headers: requestHeaders,
     body: options?.body ? JSON.stringify(options.body) : undefined,
+    next: options?.next || {},
   });
 
   if (!response.ok) {

@@ -27,7 +27,7 @@ const RemoveProjectForm = ({
 
   const generalErrorMessage =
     (removeProjectState?.status === 'error' && removeProjectState.message) || undefined;
-  console.log(removeProjectState);
+
   useEffect(() => {
     if (removeProjectState?.status === 'success') {
       if (handleClose) {

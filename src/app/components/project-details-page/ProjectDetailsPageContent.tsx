@@ -9,7 +9,17 @@ import { ProjectDetailsSection } from './ProjectDetailsSection';
 import { ProjectMembershipsSection } from './ProjectMembershipsSection';
 import { ROUTES } from '@/app/constants/routes';
 
-const ProjectDetailsPageContent = ({ params }: { params: { projectId: string } }) => {
+const ProjectDetailsPageContent = ({
+  params,
+  searchParams,
+}: {
+  params: { projectId: string };
+  searchParams?: {
+    membershipItemsPerPage?: string;
+    membershipPage?: string;
+    membershipUsernameFilter?: string;
+  };
+}) => {
   return (
     <Box
       display="flex"
@@ -31,7 +41,12 @@ const ProjectDetailsPageContent = ({ params }: { params: { projectId: string } }
         <ProjectDetailsSection projectId={params.projectId} />
       </Suspense>
       <Suspense fallback={<div>TODO: Do this.</div>}>
-        <ProjectMembershipsSection projectId={params.projectId} />
+        <ProjectMembershipsSection
+          projectId={params.projectId}
+          itemsPerPage={searchParams?.membershipItemsPerPage}
+          page={searchParams?.membershipPage}
+          usernameFilter={searchParams?.membershipUsernameFilter}
+        />
       </Suspense>
     </Box>
   );
