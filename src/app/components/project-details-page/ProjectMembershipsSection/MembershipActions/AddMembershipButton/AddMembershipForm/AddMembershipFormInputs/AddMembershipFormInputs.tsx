@@ -20,6 +20,7 @@ const AddMembershipFormInputs = ({
   onUsernameBlur,
   userLookUpMessage,
   userLookUpStatus,
+  canCreateAdminMembership,
 }: {
   username: string;
   onUsernameChange: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -64,11 +65,13 @@ const AddMembershipFormInputs = ({
             defaultValue="isProjectViewer"
             name="membershipRole"
           >
-            <FormControlLabel
-              value="isProjectAdmin"
-              control={<Radio sx={radioStyle} />}
-              label="Admin"
-            />
+            {canCreateAdminMembership && (
+              <FormControlLabel
+                value="isProjectAdmin"
+                control={<Radio sx={radioStyle} />}
+                label="Admin"
+              />
+            )}
             <FormControlLabel
               value="isProjectManager"
               control={<Radio sx={radioStyle} />}

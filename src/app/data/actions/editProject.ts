@@ -1,7 +1,7 @@
 'use server';
 import apiRequest, { ApiError, ErrorTypes } from '@/app/data/utils/request';
 import { UpdateProjectResponse } from '@/app/data/apiTypes';
-import { revalidatePath } from 'next/cache';
+import { revalidateTag } from 'next/cache';
 
 interface CreateProjectState {
   status: 'success' | 'error';
@@ -83,7 +83,7 @@ export async function editProject(
       },
     });
 
-    revalidatePath('/projects/[projectId]');
+    revalidateTag(`project-${projectId}`);
 
     return {
       status: 'success',
