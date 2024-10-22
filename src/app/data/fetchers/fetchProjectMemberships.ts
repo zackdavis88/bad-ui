@@ -29,6 +29,7 @@ export async function fetchProjectMemberships({
         query,
         next: {
           tags: [`membershipsCache-${projectId}`],
+          revalidate: 3600,
         },
       }
     );

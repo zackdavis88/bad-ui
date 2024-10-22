@@ -29,9 +29,7 @@ export default async function apiRequest<T>(
     headers?: Record<string, string>;
     body?: Record<string, unknown>;
     query?: Record<string, string>;
-    next?: {
-      tags: string[];
-    };
+    next?: RequestInit['next'];
     cache?: RequestInit['cache'];
   }
 ) {
