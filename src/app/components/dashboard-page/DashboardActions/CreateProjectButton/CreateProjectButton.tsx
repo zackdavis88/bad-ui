@@ -2,7 +2,7 @@
 import { useState, useCallback } from 'react';
 import Button from '@mui/material/Button';
 import AddIcon from '@mui/icons-material/Add';
-import { StyledModal } from '@/app/components/common/StyledModal';
+import Dialog from '@mui/material/Dialog';
 import { CreateProjectForm } from './CreateProjectForm';
 
 const CreateProjectButton = () => {
@@ -22,14 +22,16 @@ const CreateProjectButton = () => {
         <AddIcon fontSize="small" />
         New Project
       </Button>
-      <StyledModal
-        isOpen={isOpen}
-        handleClose={handleClose}
-        ariaLabelledBy="create-project-title"
-        ariaDescribedBy="create-project-description"
+      <Dialog
+        open={isOpen}
+        onClose={handleClose}
+        aria-labelledby="create-project-title"
+        aria-describedby="create-project-description"
+        fullWidth
+        maxWidth="sm"
       >
         <CreateProjectForm handleClose={handleClose} />
-      </StyledModal>
+      </Dialog>
     </>
   );
 };

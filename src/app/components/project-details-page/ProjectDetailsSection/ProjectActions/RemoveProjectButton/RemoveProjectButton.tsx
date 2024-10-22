@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Tooltip from '@mui/material/Tooltip';
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { StyledModal } from '@/app/components/common/StyledModal';
+import Dialog from '@mui/material/Dialog';
 import { RemoveProjectForm } from './RemoveProjectForm';
 
 const RemoveProjectButton = ({
@@ -43,18 +43,20 @@ const RemoveProjectButton = ({
             <DeleteIcon />
             &nbsp;Remove
           </Button>
-          <StyledModal
-            isOpen={isOpen}
-            handleClose={handleClose}
-            ariaDescribedBy="remove-project-description"
-            ariaLabelledBy="remove-project-title"
+          <Dialog
+            open={isOpen}
+            onClose={handleClose}
+            aria-describedby="remove-project-description"
+            aria-labelledby="remove-project-title"
+            fullWidth
+            maxWidth="sm"
           >
             <RemoveProjectForm
               projectName={projectName}
               projectId={projectId}
               handleClose={handleClose}
             />
-          </StyledModal>
+          </Dialog>
         </>
       )}
     </Box>

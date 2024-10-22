@@ -1,12 +1,16 @@
 import { ChangeEvent } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material';
+import FormControl from '@mui/material/FormControl';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormLabel from '@mui/material/FormLabel';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
 
 const radioStyle = {
-  color: 'primary.main',
+  color: 'text.primary',
   '&.Mui-checked': {
-    color: 'primary.main',
+    color: 'text.primary',
   },
 };
 

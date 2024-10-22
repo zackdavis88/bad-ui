@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Tooltip from '@mui/material/Tooltip';
 import Button from '@mui/material/Button';
 import EditIcon from '@mui/icons-material/Edit';
-import { StyledModal } from '@/app/components/common/StyledModal';
+import Dialog from '@mui/material/Dialog';
 import { EditProjectForm } from './EditProjectForm';
 
 const EditProjectButton = ({
@@ -45,11 +45,13 @@ const EditProjectButton = ({
             <EditIcon />
             &nbsp;Edit
           </Button>
-          <StyledModal
-            isOpen={isOpen}
-            handleClose={handleClose}
-            ariaDescribedBy="edit-project-description"
-            ariaLabelledBy="edit-project-title"
+          <Dialog
+            open={isOpen}
+            onClose={handleClose}
+            aria-labelledby="edit-project-title"
+            aria-describedby="edit-project-description"
+            fullWidth
+            maxWidth="sm"
           >
             <EditProjectForm
               handleClose={handleClose}
@@ -57,7 +59,7 @@ const EditProjectButton = ({
               projectDescription={projectDescription}
               projectId={projectId}
             />
-          </StyledModal>
+          </Dialog>
         </>
       )}
     </Box>

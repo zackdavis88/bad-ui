@@ -4,8 +4,8 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import Dialog from '@mui/material/Dialog';
 import { AddMembershipForm } from './AddMembershipForm';
-import { Dialog } from '@mui/material';
 
 const AddMembershipsButton = ({
   disabled,
