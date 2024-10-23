@@ -49,8 +49,8 @@ export default async function apiRequest<T>(
     queryString = '?' + new URLSearchParams(options.query).toString();
   }
 
-  let cachePolicy: RequestInit['cache'] = 'default';
-  if (!options?.method || options.method === 'GET') {
+  let cachePolicy: RequestInit['cache'] = undefined;
+  if ((!options?.next?.revalidate && !options?.method) || options.method === 'GET') {
     cachePolicy = 'force-cache';
   }
 

@@ -27,7 +27,7 @@ const MembershipsPagination = ({
 
       const url = `${pathname}?${updatedSearchParams.toString()}`;
 
-      router.replace(url);
+      router.replace(url, { scroll: false });
     },
     [searchParams, pathname, router]
   );

@@ -107,7 +107,8 @@ export interface UpdateProjectResponse {
 
 export interface GetProjectMembershipsResponse extends PaginationData {
   message: string;
-  memberships: MembershipData[];
+  project: Pick<ProjectData, 'id' | 'name'>;
+  memberships: Omit<MembershipData, 'project'>[];
 }
 
 export interface GetUserResponse {
@@ -116,6 +117,11 @@ export interface GetUserResponse {
 }
 
 export interface CreateMembershipResponse {
+  message: string;
+  membership: MembershipData;
+}
+
+export interface UpdateMembershipResponse {
   message: string;
   membership: MembershipData;
 }

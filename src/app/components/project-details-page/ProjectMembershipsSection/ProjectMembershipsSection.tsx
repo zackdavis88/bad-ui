@@ -30,7 +30,11 @@ const ProjectMembershipsSection = async ({
     <Box display="flex" flexDirection="column" marginBottom={8}>
       <ProjectMembershipsHeader />
       <MembershipActions permissions={permissions} project={project} />
-      <MembershipsDisplay membershipData={membershipData} usernameFilter={usernameFilter} />
+      <MembershipsDisplay
+        membershipData={membershipData}
+        usernameFilter={usernameFilter}
+        permissions={permissions}
+      />
     </Box>
   );
 };

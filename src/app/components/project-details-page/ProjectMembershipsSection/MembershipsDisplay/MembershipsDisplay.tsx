@@ -1,4 +1,4 @@
-import { GetProjectMembershipsResponse } from '@/app/data/apiTypes';
+import { GetProjectMembershipsResponse, GetProjectPermissionsResponse } from '@/app/data/apiTypes';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { MembershipsUsernameFilter } from './MembershipsUsernameFilter';
@@ -8,9 +8,11 @@ import MembershipsTable from './MembershipsTable/MembershipsTable';
 const MembershipsDisplay = ({
   membershipData,
   usernameFilter,
+  permissions,
 }: {
   membershipData: GetProjectMembershipsResponse;
   usernameFilter?: string;
+  permissions: GetProjectPermissionsResponse['permissions'];
 }) => {
   if (!usernameFilter && !membershipData.memberships.length) {
     // If this load the project is a "zombie" and no one can perform any actions on it.
@@ -50,7 +52,7 @@ const MembershipsDisplay = ({
           totalItems={membershipData.totalItems}
         />
       </Box>
-      <MembershipsTable memberships={membershipData.memberships} />
+      <MembershipsTable memberships={membershipData.memberships} permissions={permissions} />
     </>
   );
 };
