@@ -18,7 +18,6 @@ const EditMembershipForm = ({
   canUpdateAdminMembership: boolean;
   membership: Omit<MembershipData, 'project'>;
 }) => {
-  // TODO: Lets back-track on other forms on project-display and use this hook instead of prop-drilling.
   const { projectId } = useParams<{ projectId: string }>();
   const editMembershipWithIds = editMembership.bind(null, projectId, membership);
   const [updateMembershipState, formAction, isLoading] = useActionState(

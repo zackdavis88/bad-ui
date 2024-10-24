@@ -15,10 +15,10 @@ const EditMembershipFormHeader = ({
         borderTopRightRadius: 6,
       }}
     >
-      <Typography variant="h6" component="h2" id="add-membership-title">
+      <Typography variant="h6" component="h2" id="edit-membership-title">
         Edit Membership
       </Typography>
-      <Typography variant="body2" component="h2" paddingTop={1} id="add-membership-description">
+      <Typography variant="body2" component="h2" paddingTop={1} id="edit-membership-description">
         Change the permissions of an existing member.
         <Box component="ul" sx={{ margin: 0, paddingLeft: 2 }}>
           {canUpdateAdminMemberships && (

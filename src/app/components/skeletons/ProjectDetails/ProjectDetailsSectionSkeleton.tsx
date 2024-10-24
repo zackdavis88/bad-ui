@@ -6,7 +6,7 @@ import Skeleton from '@mui/material/Skeleton';
 
 const ProjectDetailsSectionSkeleton = () => {
   return (
-    <Box display="flex" flexDirection="column">
+    <Box display="flex" flexDirection="column" marginBottom={8}>
       {/* Header section */}
       <Box display="flex" justifyContent="flex-start">
         <Divider

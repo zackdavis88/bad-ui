@@ -4,7 +4,10 @@ import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import NextLink from 'next/link';
 import { Suspense } from 'react';
-import { ProjectDetailsSectionSkeleton } from '@/app/components/skeletons/ProjectDetails';
+import {
+  ProjectDetailsSectionSkeleton,
+  ProjectMembershipsSectionSkeleton,
+} from '@/app/components/skeletons/ProjectDetails';
 import { ProjectDetailsSection } from './ProjectDetailsSection';
 import { ProjectMembershipsSection } from './ProjectMembershipsSection';
 import { ROUTES } from '@/app/constants/routes';
@@ -40,7 +43,7 @@ const ProjectDetailsPageContent = ({
       <Suspense fallback={<ProjectDetailsSectionSkeleton />}>
         <ProjectDetailsSection projectId={params.projectId} />
       </Suspense>
-      <Suspense fallback={<div>TODO: Do this.</div>}>
+      <Suspense fallback={<ProjectMembershipsSectionSkeleton />}>
         <ProjectMembershipsSection
           projectId={params.projectId}
           itemsPerPage={searchParams?.membershipItemsPerPage}

@@ -3,18 +3,16 @@ import { useCallback, useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import Dialog from '@mui/material/Dialog';
-import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 import { MembershipData } from '@/app/data/apiTypes';
-import { EditMembershipForm } from './EditMembershipForm';
+import { RemoveMembershipForm } from './RemoveMembershipForm';
 
-const EditMembershipButton = ({
+const RemoveMembershipButton = ({
   disabled,
   membership,
-  canUpdateAdminMembership,
 }: {
   disabled: boolean;
   membership: Omit<MembershipData, 'project'>;
-  canUpdateAdminMembership: boolean;
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -34,31 +32,27 @@ const EditMembershipButton = ({
           disabled={disabled}
           aria-disabled={disabled}
         >
-          <EditIcon />
+          <DeleteIcon />
         </IconButton>
       </span>
     </Tooltip>
   ) : (
     <>
       <IconButton sx={{ color: 'text.primary' }} onClick={handleOpen}>
-        <EditIcon />
+        <DeleteIcon />
       </IconButton>
       <Dialog
         open={isOpen}
         onClose={handleClose}
-        aria-labelledby="edit-membership-title"
-        aria-describedby="edit-membership-description"
+        aria-labelledby="remove-membership-title"
+        aria-describedby="remove-membership-description"
         fullWidth
         maxWidth="sm"
       >
-        <EditMembershipForm
-          handleClose={handleClose}
-          canUpdateAdminMembership={canUpdateAdminMembership}
-          membership={membership}
-        />
+        <RemoveMembershipForm handleClose={handleClose} membership={membership} />
       </Dialog>
     </>
   );
 };
 
-export default EditMembershipButton;
+export default RemoveMembershipButton;

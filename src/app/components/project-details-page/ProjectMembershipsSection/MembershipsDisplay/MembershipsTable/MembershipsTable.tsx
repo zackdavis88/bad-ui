@@ -6,30 +6,10 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
-import DeleteIcon from '@mui/icons-material/Delete';
-import IconButton from '@mui/material/IconButton';
-import {
-  GetProjectMembershipsResponse,
-  GetProjectPermissionsResponse,
-  MembershipData,
-} from '@/app/data/apiTypes';
+import { GetProjectMembershipsResponse, GetProjectPermissionsResponse } from '@/app/data/apiTypes';
 import { EditMembershipButton } from './EditMembershipButton';
-
-const getRole = (membership: Omit<MembershipData, 'project'>) => {
-  if (membership.isProjectAdmin) {
-    return 'Admin';
-  }
-
-  if (membership.isProjectManager) {
-    return 'Manager';
-  }
-
-  if (membership.isProjectDeveloper) {
-    return 'Developer';
-  }
-
-  return 'Viewer';
-};
+import { RemoveMembershipButton } from './RemoveMembershipButton';
+import { getRole } from '@/app/components/project-details-page/ProjectMembershipsSection/utils/getRole';
 
 const MembershipsTable = ({
   memberships,
@@ -82,13 +62,10 @@ const MembershipsTable = ({
                         membership={membership}
                         canUpdateAdminMembership={canUpdateAdminMembership}
                       />
-                      <IconButton
-                        sx={{ color: 'text.primary', '&.Mui-disabled': { color: '#EA818D' } }}
+                      <RemoveMembershipButton
                         disabled={removeActionDisabled}
-                        aria-disabled={removeActionDisabled}
-                      >
-                        <DeleteIcon />
-                      </IconButton>
+                        membership={membership}
+                      />
                     </Box>
                   </TableCell>
                 )}
