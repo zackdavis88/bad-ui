@@ -5,7 +5,13 @@ import { GetProjectPermissionsResponse } from '@/app/data/apiTypes';
 export async function fetchProjectPermissions({ projectId }: { projectId: string }) {
   try {
     const { body } = await apiRequest<GetProjectPermissionsResponse>(
-      `/projects/${projectId}/permissions`
+      `/projects/${projectId}/permissions`,
+      {
+        next: {
+          tags: [`permissionsCache-${projectId}`],
+          revalidate: 3600,
+        },
+      }
     );
 
     return body;

@@ -1,0 +1,69 @@
+'use client';
+import { useState, useCallback } from 'react';
+import Box from '@mui/material/Box';
+import Tooltip from '@mui/material/Tooltip';
+import Button from '@mui/material/Button';
+import EditIcon from '@mui/icons-material/Edit';
+import Dialog from '@mui/material/Dialog';
+import { EditProjectForm } from './EditProjectForm';
+
+const EditProjectButton = ({
+  disabled,
+  projectName,
+  projectDescription,
+  projectId,
+}: {
+  disabled: boolean;
+  projectName: string;
+  projectDescription: string;
+  projectId: string;
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleOpen = useCallback(() => {
+    setIsOpen(true);
+  }, []);
+
+  const handleClose = useCallback(() => {
+    setIsOpen(false);
+  }, []);
+
+  return (
+    <Box sx={{ marginRight: { xs: 0, sm: 2 } }}>
+      {disabled ? (
+        <Tooltip title="You don't have permission to do this">
+          <span>
+            <Button variant="contained" color="info" disabled>
+              <EditIcon />
+              &nbsp;Edit
+            </Button>
+          </span>
+        </Tooltip>
+      ) : (
+        <>
+          <Button variant="contained" color="info" onClick={handleOpen}>
+            <EditIcon />
+            &nbsp;Edit
+          </Button>
+          <Dialog
+            open={isOpen}
+            onClose={handleClose}
+            aria-labelledby="edit-project-title"
+            aria-describedby="edit-project-description"
+            fullWidth
+            maxWidth="sm"
+          >
+            <EditProjectForm
+              handleClose={handleClose}
+              projectName={projectName}
+              projectDescription={projectDescription}
+              projectId={projectId}
+            />
+          </Dialog>
+        </>
+      )}
+    </Box>
+  );
+};
+
+export default EditProjectButton;

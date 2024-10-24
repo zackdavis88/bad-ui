@@ -2,15 +2,19 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid2';
 import Typography from '@mui/material/Typography';
 import { fetchProject } from '@/app/data/fetchers/fetchProject';
+import { fetchProjectPermissions } from '@/app/data/fetchers/fetchProjectPermissions';
 import { ProjectDetailsHeader } from './ProjectDetailsHeader';
 import { ProjectDetailsBlock } from './ProjectDetailsBlock';
+import { ProjectActions } from './ProjectActions';
 
 const ProjectDetailsSection = async ({ projectId }: { projectId: string }) => {
+  const { permissions } = await fetchProjectPermissions({ projectId });
   const { project } = await fetchProject({ projectId });
 
   return (
-    <Box display="flex" flexDirection="column">
+    <Box display="flex" flexDirection="column" marginBottom={8}>
       <ProjectDetailsHeader />
+      <ProjectActions project={project} permissions={permissions} />
       <Grid container spacing={2}>
         <ProjectDetailsBlock>
           <Box>

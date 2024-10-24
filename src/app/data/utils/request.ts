@@ -29,6 +29,8 @@ export default async function apiRequest<T>(
     headers?: Record<string, string>;
     body?: Record<string, unknown>;
     query?: Record<string, string>;
+    next?: RequestInit['next'];
+    cache?: RequestInit['cache'];
   }
 ) {
   const apiUrl = process.env.API_URL || 'http://localhost:3000';
@@ -47,10 +49,17 @@ export default async function apiRequest<T>(
     queryString = '?' + new URLSearchParams(options.query).toString();
   }
 
+  let cachePolicy: RequestInit['cache'] = undefined;
+  if ((!options?.next?.revalidate && !options?.method) || options.method === 'GET') {
+    cachePolicy = 'force-cache';
+  }
+
   const response = await fetch(`${apiUrl}${path}${queryString}`, {
     method: options?.method || 'GET',
     headers: requestHeaders,
     body: options?.body ? JSON.stringify(options.body) : undefined,
+    next: options?.next || {},
+    cache: options?.cache || cachePolicy,
   });
 
   if (!response.ok) {

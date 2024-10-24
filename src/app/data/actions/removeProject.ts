@@ -1,6 +1,7 @@
 'use server';
 import apiRequest, { ApiError, ErrorTypes } from '@/app/data/utils/request';
 import { RemoveProjectResponse } from '@/app/data/apiTypes';
+import { revalidatePath } from 'next/cache';
 
 interface RemoveProjectState {
   status: 'success' | 'error';
@@ -26,6 +27,8 @@ export async function removeProject(
         confirm: name,
       },
     });
+
+    revalidatePath('/dashboard');
 
     return {
       status: 'success',

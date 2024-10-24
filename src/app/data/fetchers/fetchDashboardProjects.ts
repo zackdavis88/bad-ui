@@ -23,6 +23,7 @@ export async function fetchDashboardProjects({
 
     const { body } = await apiRequest<GetDashboardProjectsResponse>('/dashboard/projects', {
       query,
+      next: { revalidate: 3600 },
     });
 
     return body;

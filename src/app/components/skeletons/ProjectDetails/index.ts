@@ -1,2 +1,2 @@
-export { default as ProjectActionsSkeleton } from './ProjectActionsSkeleton';
 export { default as ProjectDetailsSectionSkeleton } from './ProjectDetailsSectionSkeleton';
+export { default as ProjectMembershipsSectionSkeleton } from './ProjectMembershipsSectionSkeleton';
