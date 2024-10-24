@@ -17,6 +17,7 @@ export async function fetchProjectMemberships({
     const query: Record<string, string> = {
       page: page?.toString() || '1',
       itemsPerPage: itemsPerPage?.toString() || '8',
+      createdOnOrder: 'DESC',
     };
 
     if (usernameFilter) {
