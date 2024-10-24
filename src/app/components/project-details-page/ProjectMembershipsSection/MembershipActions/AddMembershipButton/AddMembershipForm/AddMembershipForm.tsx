@@ -6,15 +6,16 @@ import { AddMembershipFormAlert } from './AddMembershipFormAlert';
 import { AddMembershipFormInputs } from './AddMembershipFormInputs';
 import { AddMembershipFormSubmit } from './AddMembershipFormSubmit';
 import { createMembership } from '@/app/data/actions/createMembership';
+import { useParams } from 'next/navigation';
+
 const AddMembershipForm = ({
-  projectId,
   handleClose,
   canCreateAdminMembership,
 }: {
-  projectId: string;
   handleClose?: () => void;
   canCreateAdminMembership: boolean;
 }) => {
+  const { projectId } = useParams<{ projectId: string }>();
   const createMembershipWithProjectId = createMembership.bind(null, projectId);
   const [createMembershipState, formAction, isLoading] = useActionState(
     createMembershipWithProjectId,

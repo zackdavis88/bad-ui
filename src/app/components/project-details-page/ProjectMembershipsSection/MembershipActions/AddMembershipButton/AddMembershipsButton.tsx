@@ -9,11 +9,9 @@ import { AddMembershipForm } from './AddMembershipForm';
 
 const AddMembershipsButton = ({
   disabled,
-  projectId,
   canCreateAdminMembership,
 }: {
   disabled: boolean;
-  projectId: string;
   canCreateAdminMembership: boolean;
 }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -52,7 +50,6 @@ const AddMembershipsButton = ({
             maxWidth="sm"
           >
             <AddMembershipForm
-              projectId={projectId}
               canCreateAdminMembership={canCreateAdminMembership}
               handleClose={handleClose}
             />

@@ -1,12 +1,10 @@
 import Box from '@mui/material/Box';
 import { AddMembershipsButton } from './AddMembershipButton';
-import { GetProjectPermissionsResponse, GetProjectResponse } from '@/app/data/apiTypes';
+import { GetProjectPermissionsResponse } from '@/app/data/apiTypes';
 
 const MembershipActions = ({
-  project,
   permissions,
 }: {
-  project: GetProjectResponse['project'];
   permissions: GetProjectPermissionsResponse['permissions'];
 }) => {
   return (
@@ -28,7 +26,6 @@ const MembershipActions = ({
     >
       <AddMembershipsButton
         disabled={!permissions.canCreateMembership}
-        projectId={project.id}
         canCreateAdminMembership={permissions.canCreateAdminMembership}
       />
     </Box>
