@@ -9,9 +9,9 @@ const ProjectMembershipsPageContent = ({
 }: {
   params: { projectId: string };
   searchParams?: {
-    membershipItemsPerPage?: string;
-    membershipPage?: string;
-    membershipUsernameFilter?: string;
+    itemsPerPage?: string;
+    page?: string;
+    usernameFilter?: string;
   };
 }) => {
   return (
@@ -25,9 +25,9 @@ const ProjectMembershipsPageContent = ({
       <Suspense fallback={<ProjectMembershipsSectionSkeleton />}>
         <ProjectMembershipsSection
           projectId={params.projectId}
-          itemsPerPage={searchParams?.membershipItemsPerPage}
-          page={searchParams?.membershipPage}
-          usernameFilter={searchParams?.membershipUsernameFilter}
+          itemsPerPage={searchParams?.itemsPerPage}
+          page={searchParams?.page}
+          usernameFilter={searchParams?.usernameFilter}
         />
       </Suspense>
     </Box>

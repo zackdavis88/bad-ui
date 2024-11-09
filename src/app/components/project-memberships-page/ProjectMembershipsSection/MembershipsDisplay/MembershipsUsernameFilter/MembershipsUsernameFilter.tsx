@@ -12,9 +12,9 @@ const MembershipsUsernameFilter = ({ usernameFilter }: { usernameFilter?: string
   const handleChange = useDebouncedCallback((usernameFilter: string) => {
     const updatedSearchParams = new URLSearchParams(searchParams);
     if (usernameFilter) {
-      updatedSearchParams.set('membershipUsernameFilter', usernameFilter);
+      updatedSearchParams.set('usernameFilter', usernameFilter);
     } else {
-      updatedSearchParams.delete('membershipUsernameFilter');
+      updatedSearchParams.delete('usernameFilter');
     }
 
     const url = `${pathname}?${updatedSearchParams.toString()}`;
