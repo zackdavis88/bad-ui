@@ -20,9 +20,9 @@ const MembershipsPagination = ({
     (_event: React.MouseEvent<HTMLButtonElement> | null, page: number) => {
       const updatedSearchParams = new URLSearchParams(searchParams);
       if (page !== 0) {
-        updatedSearchParams.set('membershipPage', (page + 1).toString());
+        updatedSearchParams.set('page', (page + 1).toString());
       } else {
-        updatedSearchParams.delete('membershipPage');
+        updatedSearchParams.delete('page');
       }
 
       const url = `${pathname}?${updatedSearchParams.toString()}`;

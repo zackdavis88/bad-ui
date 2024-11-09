@@ -4,7 +4,7 @@ import Checkbox from '@mui/material/Checkbox';
 import Typography from '@mui/material/Typography';
 import { MembershipData } from '@/app/data/apiTypes';
 import { ChangeEvent } from 'react';
-import { getRole } from '@/app/components/project-details-page/ProjectMembershipsSection/utils/getRole';
+import { getRole } from '@/app/components/project-memberships-page/ProjectMembershipsSection/utils/getRole';
 
 const RemoveMembershipFormInputs = ({
   membership,
