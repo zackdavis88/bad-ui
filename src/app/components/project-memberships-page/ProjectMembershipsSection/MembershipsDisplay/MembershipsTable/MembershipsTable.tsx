@@ -9,7 +9,7 @@ import Box from '@mui/material/Box';
 import { GetProjectMembershipsResponse, GetProjectPermissionsResponse } from '@/app/data/apiTypes';
 import { EditMembershipButton } from './EditMembershipButton';
 import { RemoveMembershipButton } from './RemoveMembershipButton';
-import { getRole } from '@/app/components/project-details-page/ProjectMembershipsSection/utils/getRole';
+import { getRole } from '@/app/components/project-memberships-page/ProjectMembershipsSection/utils/getRole';
 
 const MembershipsTable = ({
   memberships,
