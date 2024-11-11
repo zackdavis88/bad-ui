@@ -2,7 +2,7 @@ import Box from '@mui/material/Box';
 import { GetProjectPermissionsResponse } from '@/app/data/apiTypes';
 import { AddStatusButton } from './AddStatusButton';
 
-const StatusesActions = ({
+const StatusActions = ({
   permissions,
   statusCount,
 }: {
@@ -31,4 +31,4 @@ const StatusesActions = ({
   );
 };
 
-export default StatusesActions;
+export default StatusActions;

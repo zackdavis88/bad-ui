@@ -2,7 +2,7 @@ import Box from '@mui/material/Box';
 import { fetchProjectStatuses } from '@/app/data/fetchers/fetchProjectStatuses';
 import { fetchProjectPermissions } from '@/app/data/fetchers/fetchProjectPermissions';
 import { ProjectStatusesHeader } from './ProjectStatusesHeader';
-import { StatusesActions } from './StatusesActions';
+import { StatusActions } from './StatusActions';
 import { StatusesDisplay } from './StatusesDisplay';
 
 const ProjectStatusesSection = async ({
@@ -27,7 +27,7 @@ const ProjectStatusesSection = async ({
   return (
     <Box display="flex" flexDirection="column" marginBottom={8}>
       <ProjectStatusesHeader />
-      <StatusesActions permissions={permissions} statusCount={statusesData.totalItems} />
+      <StatusActions permissions={permissions} statusCount={statusesData.totalItems} />
       <StatusesDisplay
         statusesData={statusesData}
         nameFilter={nameFilter}
