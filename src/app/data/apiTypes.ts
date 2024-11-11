@@ -44,6 +44,12 @@ interface PaginationData {
   totalPages: number;
 }
 
+export interface StatusData {
+  id: string;
+  name: string;
+  project: Pick<ProjectData, 'id' | 'name'>;
+}
+
 export interface CreateUserResponse {
   message: string;
   user: UserData;
@@ -124,4 +130,25 @@ export interface CreateMembershipResponse {
 export interface UpdateMembershipResponse {
   message: string;
   membership: MembershipData;
+}
+
+export interface GetProjectStatusesResponse extends PaginationData {
+  message: string;
+  project: Pick<ProjectData, 'id' | 'name'>;
+  statuses: Omit<StatusData, 'project'>[];
+}
+
+export interface CreateStatusResponse {
+  message: string;
+  status: StatusData;
+}
+
+export interface EditStatusResponse {
+  message: string;
+  status: StatusData;
+}
+
+export interface RemoveStatusResponse {
+  message: string;
+  status: StatusData;
 }
