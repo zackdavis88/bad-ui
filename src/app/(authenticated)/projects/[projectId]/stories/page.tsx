@@ -1,11 +1,8 @@
 import { Metadata } from 'next';
+import { ProjectStoriesPageContent } from '@/app/components/project-stories-page';
 
 export const metadata: Metadata = {
   title: 'Project Stories',
 };
 
-const ProjectStoriesPage = ({ params }: { params: { projectId: string } }) => {
-  return <div>Stories go here for project {params.projectId}.</div>;
-};
-
-export default ProjectStoriesPage;
+export default ProjectStoriesPageContent;

@@ -33,6 +33,19 @@ export interface MembershipData {
   deletedBy?: Pick<UserData, 'username' | 'displayName'>;
 }
 
+interface StoryData {
+  id: string;
+  project: Pick<ProjectData, 'id' | 'name'>;
+  title: string;
+  details: string | null;
+  status?: Omit<StatusData, 'project'> | null;
+  createdOn: Date;
+  updatedOn?: Date | null;
+  createdBy: Pick<UserData, 'username' | 'displayName'> | null;
+  updatedBy?: Pick<UserData, 'username' | 'displayName'> | null;
+  ownedBy?: Pick<UserData, 'username' | 'displayName'> | null;
+}
+
 interface DashboardProjectData extends ProjectData {
   role: 'Admin' | 'Manager' | 'Developer' | 'Viewer';
 }
@@ -151,4 +164,9 @@ export interface EditStatusResponse {
 export interface RemoveStatusResponse {
   message: string;
   status: StatusData;
+}
+
+export interface GetProjectStoriesResponse {
+  message: string;
+  stories: StoryData[];
 }
