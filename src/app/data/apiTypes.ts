@@ -170,3 +170,8 @@ export interface GetProjectStoriesResponse {
   message: string;
   stories: StoryData[];
 }
+
+export interface CreateStoryResponse {
+  message: string;
+  story: StoryData;
+}

@@ -1,11 +1,8 @@
 import { Metadata } from 'next';
+import { CreateStoryPageContent } from '@/app/components/create-story-page';
 
 export const metadata: Metadata = {
   title: 'Create Story',
 };
 
-const CreateStoryPage = () => {
-  return <div>Create Story Page</div>;
-};
-
-export default CreateStoryPage;
+export default CreateStoryPageContent;
