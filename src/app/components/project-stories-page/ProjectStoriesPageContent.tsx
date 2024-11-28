@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 import Box from '@mui/material/Box';
 import { ProjectStoriesSection } from './ProjectStoriesSection';
 
-const ProjectStatusesPageContent = ({
+const ProjectStoriesPageContent = ({
   params,
   searchParams,
 }: {
@@ -35,4 +35,4 @@ const ProjectStatusesPageContent = ({
   );
 };
 
-export default ProjectStatusesPageContent;
+export default ProjectStoriesPageContent;

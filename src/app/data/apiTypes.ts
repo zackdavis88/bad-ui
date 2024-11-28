@@ -33,7 +33,7 @@ export interface MembershipData {
   deletedBy?: Pick<UserData, 'username' | 'displayName'>;
 }
 
-interface StoryData {
+export interface StoryData {
   id: string;
   project: Pick<ProjectData, 'id' | 'name'>;
   title: string;
@@ -166,9 +166,10 @@ export interface RemoveStatusResponse {
   status: StatusData;
 }
 
-export interface GetProjectStoriesResponse {
+export interface GetProjectStoriesResponse extends PaginationData {
   message: string;
   stories: StoryData[];
+  project: Pick<ProjectData, 'id' | 'name'>;
 }
 
 export interface CreateStoryResponse {
